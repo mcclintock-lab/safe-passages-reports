@@ -1,0 +1,51 @@
+{{#intersectsRig}}
+<div class="reportSection oilRig warning {{lengthChangeClass}}">
+  <h4>Oil Platform Intersection</h4>
+  <p>
+    Your proposal overlaps the safety area around an oil platform!
+    <br>
+  </p>
+  <a href="#" data-toggle-node="51f2b455c96003dc13013e84">show platforms</a>
+</div>
+{{/intersectsRig}}
+
+<div class="reportSection sightings {{lengthChangeClass}} collapsed">
+  <h4>Whale Sightings</h4>
+  <p>Number of whale sightings within this footprint compared to existing shipping lanes. Sightings are recorded by whalewatching vessels.</p>
+  <ul class="sightings">
+  {{#whaleSightings}}
+    <li class="{{id}}">{{name}} <span class="sci">{{scientificName}}</span><span class="diff {{changeClass}}">{{percentChange}}</span><span class="count">{{count}}</span></li>
+  {{/whaleSightings}}
+  </ul>
+  <a class="moreResults" href="#">more results</a>
+  <a href="#" style="float:right;" data-toggle-node="51f2b455c96003dc13013e45">show sightings layer</a>
+</div>
+
+<div class="costs reportSection {{lengthChangeClass}}">
+  <h4>Distance and Fuel Costs</h4>
+  {{#significantDistanceChange}}
+  <p class="summary"><span class="measure">{{lengthPercentChange}}</span> each year for all transits</p>
+  <div class="distance">
+    <span class="measure">{{lengthChange}}</span>
+    change in length
+  </div>
+  <div class="fuel">
+    <span class="measure">{{tonsFuelChange}}</span>
+    in fuel consumption
+  </div>
+  <div class="cost">
+    <span class="measure">${{costChange}}</span>
+    in voyage costs
+  </div>
+  {{/significantDistanceChange}}
+  {{^significantDistanceChange}}
+  <p class="summary">No significant difference from existing configuration.</p>
+  {{/significantDistanceChange}}
+</div>
+
+<div class="reportSection habitat {{lengthChangeClass}}">
+  <h4>Sensitive Blue Whale Habitat</h4>
+  <p>
+    <span class="measure">{{intersectedIsobathM}} square meters of sensitive habitat disturbed.</span><span class="change {{isobathChangeClass}}">{{isobathPercentChange}}</span>
+  </p>
+</div>

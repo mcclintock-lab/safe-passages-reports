@@ -1,6 +1,7 @@
 {
-  "name": "report-template",
-  "version": "0.1.0",
+  "name": "shipping-lane-reports",
+  "version": "0.2.0",
+  "repository": "git://github.com/mcclintock-lab/shipping-lane-report.git",
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-connect": "~0.3.0",

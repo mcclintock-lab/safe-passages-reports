@@ -1,2 +1,281 @@
-@import '../../lib/stylesheets/common.less';
+@import '../node_modules/seasketch-reporting-api/stylesheets/common.less';
 
+.shippingLaneInfo {
+
+  .costs > div {
+    float:left;
+    padding:10px;
+  }
+
+  .costs > div:nth-child(3) {
+    padding-left:0;
+  }
+
+  .costs > div:last-child {
+    padding-right:0;
+  }
+
+  .costs {
+    span {
+      display:block;
+    }
+  }
+  .distance {
+    span.change {
+      &:before {
+        font-family:'IconicStroke';
+        content:'↑ ';
+      }
+      &:after {
+        content: ' longer';
+      }
+    }
+  }
+
+  .measure {
+    font-weight:bold;
+  }
+
+  .measure:after {
+    font-weight:normal;
+  }
+
+  .distance {
+    .measure:after {
+      content:' nautical mile';
+    }
+  }
+
+  .fuel .measure:after {
+    content: ' ton increase';
+  }
+
+  .cost .measure:after {
+    content: ' increase';
+  }
+
+
+  .negative {
+    .cost .measure:after {
+      content: ' decrease';
+    }    
+    .fuel .measure:after {
+      content: ' ton decrease';
+    }
+  }
+
+
+  .distance.negative {
+    span.change {
+      &:before {
+        font-family:'IconicStroke';
+        content:'↓ ';
+      }
+      &:after {
+        content: ' shorter';
+      }
+    }
+  }
+
+  p.summary {
+    font-size:18px;
+    margin-top:15px;
+    padding:0px;
+    .measure {
+      color:#6f0000;
+      display:inline-block;
+      // font-style:normal;
+      &:after {
+        font-weight:bold;
+        content:'% increase in costs';
+      }
+    }
+  }
+
+  .negative p.summary .measure {
+    color:#023e0f;
+  }
+
+  .negative p.summary .measure:after {
+    content: '% decrease in costs';
+  }
+  .negative p.summary .measure:before {
+    font-family:'IconicStroke';
+    content: '↓ ';
+    position:relative;
+    top:-1px;
+  }
+  .positive p.summary .measure:before {
+    font-family:'IconicStroke';
+    content: '↑ ';
+    position:relative;
+    top:-1px;
+  }
+
+  .sightings {
+    margin-left:0px;
+    // padding-left:10px;
+    margin-bottom:14px;
+  }
+
+  .sightings li {
+    font-weight:bold;
+    width:99%;
+    position:relative;
+    list-style: none;
+    margin:0px;
+    padding-bottom:28px;
+    padding-top:4px;
+    padding-left:4px;
+    padding-right:4px;
+    border-bottom:solid 1px #e6e6e6;
+    font-size:14px;
+    span.sci {
+      font-size:12px;
+      font-weight:normal;
+      font-style:italic;
+      color:#aaa;
+      position:absolute;
+      bottom:8px;
+      left:4px;
+    }
+
+    &:hover {
+      background:#ffffe5;
+    }
+    span.count {
+      top:15px;
+      // float:right;
+      // margin:0px 10px;
+      position:absolute;
+      right:95px;
+      // top:11px;
+      // display:none;
+      color:#a9a9a9;
+      margin-right:6px;
+    }
+
+    .diff {
+      top:10px;
+      position:relative;
+      font-size:22px;
+      float:right;
+      text-shadow:1px 1px 0px rgba(0,0,0,0.2);
+      &.positive {
+        color:#535050;
+      }
+
+      &.negative {
+        color:green;
+      }
+
+      &:after {
+        content: '%';
+      }
+
+      &:before {
+        font-family:'IconicStroke';
+        content:'↓ ';
+      }
+
+      &.positive:before {
+        content: '↑ ';
+      }
+
+      &.nochange:before {
+        content: '';
+      }
+    }
+    // &:last-child {
+    //   border-bottom:none;
+    //   margin-bottom:-10px;
+    // }
+  }
+
+  .nochange {
+    p.summary {
+      font-size:14px;
+      font-style: italic;
+    }
+
+    .sightings li {
+      .diff {
+        display:none;
+      }
+      .count {
+        display:none;
+      }
+
+      &:after {
+        content:'no change';
+        float:right;
+        color:grey;
+        font-style: italic;
+        font-weight:normal;
+        background:transparent;
+        border:none;
+        font-size:14px;
+        top:0;
+      }
+
+    }
+  }
+
+  .habitat {
+    .change {
+      // color:green;
+      &:before {
+        content: ' A ';
+      }
+
+      &:after {
+        content: '% decrease compared to the existing shipping lane.';
+      }
+    }
+
+    .change.positive {
+      color:#cd0000;     
+      &:after {
+        content: '% increase compared to the existing shipping lane.';
+      }
+    }
+  }
+
+  .habitat.nochange {
+    .change {
+      display:none;
+    }
+
+    .measure:after {
+      font-style:italic;
+      content: ' No siginificant difference compared to the existing shipping lane.';
+    }
+  }
+
+  li.Blue:after {
+    content: 'Endangered';
+    font-size:10px;
+    padding:1px 4px;
+    background:rgba(255, 0,0,0.7);
+    color:white;
+    position:relative;
+    top:-1px;
+  }
+
+  .collapsed .sightings {
+    li:nth-child(n+4) {
+      display:none;
+    }
+  }
+
+  .collapsed .moreResults {
+    display:block;
+    float:left;
+    color:#6c9390;
+  }
+
+  .moreResults {
+    display:none;
+  }
+
+}
