@@ -9,6 +9,7 @@
 </div>
 {{/intersectsRig}}
 
+
 <div class="reportSection sightings {{lengthChangeClass}} collapsed">
   <h4>Whale Sightings</h4>
   <p>Number of whale sightings within this footprint compared to existing shipping lanes. Sightings are recorded by whalewatching vessels.</p>
@@ -23,6 +24,7 @@
 
 <div class="costs reportSection {{lengthChangeClass}}">
   <h4>Distance and Fuel Costs</h4>
+  <p>The new shipping lane has a length of <strong>{{new_length}}</strong> miles.</p>
   {{#significantDistanceChange}}
   <p class="summary"><span class="measure">{{lengthPercentChange}}</span> each year for all transits</p>
   <div class="distance">

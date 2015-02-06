@@ -31,6 +31,8 @@ class ShippingLaneReportTab extends ReportTab
     # isobath = @results.results[2]
     rigs = @recordSet('ShippingLaneReport', 'RigsNear')
     whaleSightings = @recordSet('ShippingLaneReport', 'WhaleCount').toArray()
+    new_length = Math.round(@recordSet('ShippingLaneReport', 'NewLength').data.value,1)
+
     sightings = {}
     for feature in whaleSightings
       species = feature.Species
@@ -98,6 +100,7 @@ class ShippingLaneReportTab extends ReportTab
       intersectedIsobathM: addCommas(Math.round(intersectedIsobathM))
       isobathPercentChange: isobathPercentChange
       isobathChangeClass: isobathChangeClass
+      new_length: new_length
 
     @$el.html @template.render context, @partials
 
