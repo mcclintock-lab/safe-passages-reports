@@ -394,6 +394,17 @@
 .overview .distance span.change:after {
   content: ' longer';
 }
+.whales .emissions span.change:before,
+.emissions .emissions span.change:before,
+.overview .emissions span.change:before {
+  font-family: 'IconicStroke';
+  content: '↑ ';
+}
+.whales .emissions span.change:after,
+.emissions .emissions span.change:after,
+.overview .emissions span.change:after {
+  content: ' higher';
+}
 .whales .measure,
 .emissions .measure,
 .overview .measure {
@@ -429,6 +440,11 @@
 .overview .negative .fuel .measure:after {
   content: ' ton decrease';
 }
+.whales .negative .emissions .measure:after,
+.emissions .negative .emissions .measure:after,
+.overview .negative .emissions .measure:after {
+  content: 'decrease in tons CO2';
+}
 .whales .distance.negative span.change:before,
 .emissions .distance.negative span.change:before,
 .overview .distance.negative span.change:before {
@@ -439,6 +455,17 @@
 .emissions .distance.negative span.change:after,
 .overview .distance.negative span.change:after {
   content: ' shorter';
+}
+.whales .emissions.negative span.change:before,
+.emissions .emissions.negative span.change:before,
+.overview .emissions.negative span.change:before {
+  font-family: 'IconicStroke';
+  content: '↓ ';
+}
+.whales .emissions.negative span.change:after,
+.emissions .emissions.negative span.change:after,
+.overview .emissions.negative span.change:after {
+  content: ' lower';
 }
 .whales p.summary,
 .emissions p.summary,
@@ -459,15 +486,73 @@
   font-weight: bold;
   content: '% increase in costs';
 }
+.whales p.summary_emissions,
+.emissions p.summary_emissions,
+.overview p.summary_emissions {
+  font-size: 18px;
+  margin-top: 15px;
+  padding: 0px;
+}
+.whales p.summary_emissions .measure,
+.emissions p.summary_emissions .measure,
+.overview p.summary_emissions .measure {
+  color: #6f0000;
+  display: inline-block;
+}
+.whales p.summary_emissions .measure:after,
+.emissions p.summary_emissions .measure:after,
+.overview p.summary_emissions .measure:after {
+  font-weight: bold;
+  content: '% increase in';
+}
+.whales p.lane_length,
+.emissions p.lane_length,
+.overview p.lane_length {
+  font-size: 18px;
+  margin-top: 15px;
+  padding: 0px;
+}
+.whales p.lane_length .measure,
+.emissions p.lane_length .measure,
+.overview p.lane_length .measure {
+  color: #6f0000;
+  display: inline-block;
+}
+.whales p.lane_length .measure:after,
+.emissions p.lane_length .measure:after,
+.overview p.lane_length .measure:after {
+  font-weight: bold;
+  content: '% increase in lane length';
+}
 .whales .negative p.summary .measure,
 .emissions .negative p.summary .measure,
 .overview .negative p.summary .measure {
+  color: #023e0f;
+}
+.whales .negative p.summary_emissions .measure,
+.emissions .negative p.summary_emissions .measure,
+.overview .negative p.summary_emissions .measure {
+  color: #023e0f;
+}
+.whales .negative p.lane_length .measure,
+.emissions .negative p.lane_length .measure,
+.overview .negative p.lane_length .measure {
   color: #023e0f;
 }
 .whales .negative p.summary .measure:after,
 .emissions .negative p.summary .measure:after,
 .overview .negative p.summary .measure:after {
   content: '% decrease in costs';
+}
+.whales .negative p.summary_emissions .measure:after,
+.emissions .negative p.summary_emissions .measure:after,
+.overview .negative p.summary_emissions .measure:after {
+  content: '% decrease in';
+}
+.whales .negative p.lane_length .measure:after,
+.emissions .negative p.lane_length .measure:after,
+.overview .negative p.lane_length .measure:after {
+  content: '% decrease in lane length';
 }
 .whales .negative p.summary .measure:before,
 .emissions .negative p.summary .measure:before,
@@ -477,9 +562,41 @@
   position: relative;
   top: -1px;
 }
+.whales .negative p.summary_emissions .measure:before,
+.emissions .negative p.summary_emissions .measure:before,
+.overview .negative p.summary_emissions .measure:before {
+  font-family: 'IconicStroke';
+  content: '↓ ';
+  position: relative;
+  top: -1px;
+}
 .whales .positive p.summary .measure:before,
 .emissions .positive p.summary .measure:before,
 .overview .positive p.summary .measure:before {
+  font-family: 'IconicStroke';
+  content: '↑ ';
+  position: relative;
+  top: -1px;
+}
+.whales .positive p.lane_length .measure:before,
+.emissions .positive p.lane_length .measure:before,
+.overview .positive p.lane_length .measure:before {
+  font-family: 'IconicStroke';
+  content: '↑ ';
+  position: relative;
+  top: -1px;
+}
+.whales .negative p.lane_length .measure:before,
+.emissions .negative p.lane_length .measure:before,
+.overview .negative p.lane_length .measure:before {
+  font-family: 'IconicStroke';
+  content: '↓ ';
+  position: relative;
+  top: -1px;
+}
+.whales .positive p.summary_emissions .measure:before,
+.emissions .positive p.summary_emissions .measure:before,
+.overview .positive p.summary_emissions .measure:before {
   font-family: 'IconicStroke';
   content: '↑ ';
   position: relative;

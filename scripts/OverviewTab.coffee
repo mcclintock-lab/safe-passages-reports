@@ -27,6 +27,16 @@ class OverviewTab extends ReportTab
 
   render: () ->
     window.results = @results
+    existingLength = 122.75
+    length = Math.round(@recordSet('ShippingLaneReport', 'NewLength').data.value,1)
+
+    #length = @model.get('geometry').features[0].attributes.Shape_Length / 5048
+    percentChange = Math.abs(((existingLength - length) / existingLength) * 100)
+    lengthIncreased = existingLength - length < 0
+    lengthChange = Math.round(Math.abs(existingLength-length))
+    lengthChangeClass = if lengthIncreased then 'positive' else 'negative'
+    if Math.abs(existingLength - length) < 0.01
+      lengthChangeClass = 'nochange'
 
     rigs = @recordSet('ShippingLaneReport', 'RigsNear')
     rigIntersections = 0
@@ -37,6 +47,12 @@ class OverviewTab extends ReportTab
 
     context =
       intersectsRig: overlapsRig
+      length: length 
+      existingLength: Math.round(existingLength)
+      lengthChangeClass: lengthChangeClass
+      lengthIncreased:lengthIncreased
+      lengthChange:lengthChange
+      percentChange: Math.round(percentChange)
 
     @$el.html @template.render context, @partials
 

@@ -23,22 +23,32 @@ class EmissionsTab extends ReportTab
   events:
     "click a[rel=toggle-layer]" : '_handleReportLayerClick'
     "click a.moreResults":        'onMoreResultsClick'
-  dependencies: ['ShippingLaneReport']
+  dependencies: ['ShippingLaneReport', 'Emissions']
 
   render: () ->
     window.results = @results
 
     new_length = Math.round(@recordSet('ShippingLaneReport', 'NewLength').data.value,1)
-
+    new_emissions = Math.round(@recordSet('Emissions', 'Emissions').data.value,1)
+    original_emissions = Math.round(@recordSet('Emissions', 'OriginalEmissions').data.value,1)
 
 
     existingLength = 122.75
-    length = @model.get('geometry').features[0].attributes.Shape_Length / 5048
+    length = new_length
+    #length = @model.get('geometry').features[0].attributes.Shape_Length / 5048
     percentChange = Math.abs(((existingLength - length) / existingLength) * 100)
     lengthIncreased = existingLength - length < 0
     lengthChangeClass = if lengthIncreased then 'positive' else 'negative'
     if Math.abs(existingLength - length) < 0.01
       lengthChangeClass = 'nochange'
+
+    emissionsIncreased = original_emissions - new_emissions < 0
+    emissionsChangeClass = if emissionsIncreased then 'positive' else 'negative'
+    emissionsPercentChange =  Math.abs(((original_emissions - new_emissions) / existingLength) * 100)
+    if Math.abs(original_emissions - new_emissions) < 0.01
+      emissionsChangeClass = 'nochange'
+
+
     # from http://www.bren.ucsb.edu/research/documents/whales_report.pdf
     # increase in voyage cost per nm
     vc = 3535
@@ -56,6 +66,8 @@ class EmissionsTab extends ReportTab
     tonsFuel = tonsFuelPerNM * length
     context =
       significantDistanceChange: Math.abs(existingLength - length) > 0.1
+      significantEmissionsChange: Math.abs(original_emissions - new_emissions) > 0.1
+
       sketchClass: @app.sketchClasses.get(@model.get 'sketchclass').forTemplate()
       sketch: @model.forTemplate()
       length: Math.round(length * 100) / 100
@@ -67,6 +79,11 @@ class EmissionsTab extends ReportTab
       lengthChange: Math.round((length - existingLength) * 100) / 100
 
       new_length: new_length
+      new_emissions: Math.round(new_emissions)
+      orig_emissions: Math.round(original_emissions)
+      emissionsIncreased: emissionsIncreased
+      emissionsChangeClass: emissionsChangeClass
+      emissionsPercentChange: Math.round(emissionsPercentChange)
 
     @$el.html @template.render context, @partials
 

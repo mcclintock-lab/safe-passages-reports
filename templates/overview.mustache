@@ -1,3 +1,13 @@
+<div class="distance reportSection {{lengthChangeClass}}">
+  <h4>Length</h4>
+  	<p class="lane_length"><span class="measure">{{percentChange}}</span>
+	<div class="length_diff">
+		The new shipping lane is <strong>{{length}}</strong> nautical miles, <strong>{{lengthChange}}</strong> nautical miles
+		{{#lengthIncreased}}longer{{/lengthIncreased}}{{^lengthIncreased}}shorter{{/lengthIncreased}} than the original shipping lane.
+	</div>
+
+</div>
+
 {{#intersectsRig}}
 <div class="reportSection oilRig warning {{lengthChangeClass}}">
   <h4>Oil Platform Intersection</h4>

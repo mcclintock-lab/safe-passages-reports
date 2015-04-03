@@ -20,6 +20,7 @@
       display:block;
     }
   }
+
   .distance {
     span.change {
       &:before {
@@ -31,6 +32,19 @@
       }
     }
   }
+
+  .emissions {
+    span.change {
+      &:before {
+        font-family:'IconicStroke';
+        content:'↑ ';
+      }
+      &:after {
+        content: ' higher';
+      }
+    }
+  }
+
 
   .measure {
     font-weight:bold;
@@ -62,10 +76,13 @@
     .fuel .measure:after {
       content: ' ton decrease';
     }
+    .emissions .measure:after {
+      content: 'decrease in tons CO2'
+    }
   }
 
 
-  .distance.negative {
+  .distance.negative{
     span.change {
       &:before {
         font-family:'IconicStroke';
@@ -73,6 +90,18 @@
       }
       &:after {
         content: ' shorter';
+      }
+    }
+  }
+
+  .emissions.negative{
+    span.change {
+      &:before {
+        font-family:'IconicStroke';
+        content:'↓ ';
+      }
+      &:after {
+        content: ' lower';
       }
     }
   }
@@ -92,12 +121,57 @@
     }
   }
 
+  p.summary_emissions {
+    font-size:18px;
+    margin-top:15px;
+    padding:0px;
+    .measure {
+      color:#6f0000;
+      display:inline-block;
+      // font-style:normal;
+      &:after {
+        font-weight:bold;
+        content:'% increase in';
+      }
+    }
+  }
+
+  p.lane_length {
+    font-size:18px;
+    margin-top:15px;
+    padding:0px;
+    .measure {
+      color:#6f0000;
+      display:inline-block;
+      // font-style:normal;
+      &:after {
+        font-weight:bold;
+        content: '% increase in lane length'
+      }
+    }
+  }
+
   .negative p.summary .measure {
+    color:#023e0f;
+  }
+
+  .negative p.summary_emissions .measure {
+    color:#023e0f;
+  }
+
+  .negative p.lane_length .measure {
     color:#023e0f;
   }
 
   .negative p.summary .measure:after {
     content: '% decrease in costs';
+  }
+
+  .negative p.summary_emissions .measure:after {
+    content: '% decrease in'
+  }
+  .negative p.lane_length .measure:after {
+    content: '% decrease in lane length'
   }
   .negative p.summary .measure:before {
     font-family:'IconicStroke';
@@ -105,7 +179,35 @@
     position:relative;
     top:-1px;
   }
+
+  .negative p.summary_emissions .measure:before {
+    font-family:'IconicStroke';
+    content: '↓ ';
+    position:relative;
+    top:-1px;
+  }
+
   .positive p.summary .measure:before {
+    font-family:'IconicStroke';
+    content: '↑ ';
+    position:relative;
+    top:-1px;
+  }
+
+  .positive p.lane_length .measure:before {
+    font-family:'IconicStroke';
+    content: '↑ ';
+    position:relative;
+    top:-1px;
+  }
+  .negative p.lane_length .measure:before {
+    font-family:'IconicStroke';
+    content: '↓ ';
+    position:relative;
+    top:-1px;
+  }
+
+  .positive p.summary_emissions .measure:before {
     font-family:'IconicStroke';
     content: '↑ ';
     position:relative;
