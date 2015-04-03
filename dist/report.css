@@ -362,90 +362,138 @@
 .reportView .reportSection.tableContainer p {
   padding: 10px;
 }
-.shippingLaneInfo .costs > div {
+.whales .costs > div,
+.emissions .costs > div,
+.overview .costs > div {
   float: left;
   padding: 10px;
 }
-.shippingLaneInfo .costs > div:nth-child(3) {
+.whales .costs > div:nth-child(3),
+.emissions .costs > div:nth-child(3),
+.overview .costs > div:nth-child(3) {
   padding-left: 0;
 }
-.shippingLaneInfo .costs > div:last-child {
+.whales .costs > div:last-child,
+.emissions .costs > div:last-child,
+.overview .costs > div:last-child {
   padding-right: 0;
 }
-.shippingLaneInfo .costs span {
+.whales .costs span,
+.emissions .costs span,
+.overview .costs span {
   display: block;
 }
-.shippingLaneInfo .distance span.change:before {
+.whales .distance span.change:before,
+.emissions .distance span.change:before,
+.overview .distance span.change:before {
   font-family: 'IconicStroke';
   content: '↑ ';
 }
-.shippingLaneInfo .distance span.change:after {
+.whales .distance span.change:after,
+.emissions .distance span.change:after,
+.overview .distance span.change:after {
   content: ' longer';
 }
-.shippingLaneInfo .measure {
+.whales .measure,
+.emissions .measure,
+.overview .measure {
   font-weight: bold;
 }
-.shippingLaneInfo .measure:after {
+.whales .measure:after,
+.emissions .measure:after,
+.overview .measure:after {
   font-weight: normal;
 }
-.shippingLaneInfo .distance .measure:after {
+.whales .distance .measure:after,
+.emissions .distance .measure:after,
+.overview .distance .measure:after {
   content: ' nautical mile';
 }
-.shippingLaneInfo .fuel .measure:after {
+.whales .fuel .measure:after,
+.emissions .fuel .measure:after,
+.overview .fuel .measure:after {
   content: ' ton increase';
 }
-.shippingLaneInfo .cost .measure:after {
+.whales .cost .measure:after,
+.emissions .cost .measure:after,
+.overview .cost .measure:after {
   content: ' increase';
 }
-.shippingLaneInfo .negative .cost .measure:after {
+.whales .negative .cost .measure:after,
+.emissions .negative .cost .measure:after,
+.overview .negative .cost .measure:after {
   content: ' decrease';
 }
-.shippingLaneInfo .negative .fuel .measure:after {
+.whales .negative .fuel .measure:after,
+.emissions .negative .fuel .measure:after,
+.overview .negative .fuel .measure:after {
   content: ' ton decrease';
 }
-.shippingLaneInfo .distance.negative span.change:before {
+.whales .distance.negative span.change:before,
+.emissions .distance.negative span.change:before,
+.overview .distance.negative span.change:before {
   font-family: 'IconicStroke';
   content: '↓ ';
 }
-.shippingLaneInfo .distance.negative span.change:after {
+.whales .distance.negative span.change:after,
+.emissions .distance.negative span.change:after,
+.overview .distance.negative span.change:after {
   content: ' shorter';
 }
-.shippingLaneInfo p.summary {
+.whales p.summary,
+.emissions p.summary,
+.overview p.summary {
   font-size: 18px;
   margin-top: 15px;
   padding: 0px;
 }
-.shippingLaneInfo p.summary .measure {
+.whales p.summary .measure,
+.emissions p.summary .measure,
+.overview p.summary .measure {
   color: #6f0000;
   display: inline-block;
 }
-.shippingLaneInfo p.summary .measure:after {
+.whales p.summary .measure:after,
+.emissions p.summary .measure:after,
+.overview p.summary .measure:after {
   font-weight: bold;
   content: '% increase in costs';
 }
-.shippingLaneInfo .negative p.summary .measure {
+.whales .negative p.summary .measure,
+.emissions .negative p.summary .measure,
+.overview .negative p.summary .measure {
   color: #023e0f;
 }
-.shippingLaneInfo .negative p.summary .measure:after {
+.whales .negative p.summary .measure:after,
+.emissions .negative p.summary .measure:after,
+.overview .negative p.summary .measure:after {
   content: '% decrease in costs';
 }
-.shippingLaneInfo .negative p.summary .measure:before {
+.whales .negative p.summary .measure:before,
+.emissions .negative p.summary .measure:before,
+.overview .negative p.summary .measure:before {
   font-family: 'IconicStroke';
   content: '↓ ';
   position: relative;
   top: -1px;
 }
-.shippingLaneInfo .positive p.summary .measure:before {
+.whales .positive p.summary .measure:before,
+.emissions .positive p.summary .measure:before,
+.overview .positive p.summary .measure:before {
   font-family: 'IconicStroke';
   content: '↑ ';
   position: relative;
   top: -1px;
 }
-.shippingLaneInfo .sightings {
+.whales .sightings,
+.emissions .sightings,
+.overview .sightings {
   margin-left: 0px;
   margin-bottom: 14px;
 }
-.shippingLaneInfo .sightings li {
+.whales .sightings li,
+.emissions .sightings li,
+.overview .sightings li {
   font-weight: bold;
   width: 99%;
   position: relative;
@@ -458,7 +506,9 @@
   border-bottom: solid 1px #e6e6e6;
   font-size: 14px;
 }
-.shippingLaneInfo .sightings li span.sci {
+.whales .sightings li span.sci,
+.emissions .sightings li span.sci,
+.overview .sightings li span.sci {
   font-size: 12px;
   font-weight: normal;
   font-style: italic;
@@ -467,53 +517,79 @@
   bottom: 8px;
   left: 4px;
 }
-.shippingLaneInfo .sightings li:hover {
+.whales .sightings li:hover,
+.emissions .sightings li:hover,
+.overview .sightings li:hover {
   background: #ffffe5;
 }
-.shippingLaneInfo .sightings li span.count {
+.whales .sightings li span.count,
+.emissions .sightings li span.count,
+.overview .sightings li span.count {
   top: 15px;
   position: absolute;
   right: 95px;
   color: #a9a9a9;
   margin-right: 6px;
 }
-.shippingLaneInfo .sightings li .diff {
+.whales .sightings li .diff,
+.emissions .sightings li .diff,
+.overview .sightings li .diff {
   top: 10px;
   position: relative;
   font-size: 22px;
   float: right;
   text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.2);
 }
-.shippingLaneInfo .sightings li .diff.positive {
+.whales .sightings li .diff.positive,
+.emissions .sightings li .diff.positive,
+.overview .sightings li .diff.positive {
   color: #535050;
 }
-.shippingLaneInfo .sightings li .diff.negative {
+.whales .sightings li .diff.negative,
+.emissions .sightings li .diff.negative,
+.overview .sightings li .diff.negative {
   color: green;
 }
-.shippingLaneInfo .sightings li .diff:after {
+.whales .sightings li .diff:after,
+.emissions .sightings li .diff:after,
+.overview .sightings li .diff:after {
   content: '%';
 }
-.shippingLaneInfo .sightings li .diff:before {
+.whales .sightings li .diff:before,
+.emissions .sightings li .diff:before,
+.overview .sightings li .diff:before {
   font-family: 'IconicStroke';
   content: '↓ ';
 }
-.shippingLaneInfo .sightings li .diff.positive:before {
+.whales .sightings li .diff.positive:before,
+.emissions .sightings li .diff.positive:before,
+.overview .sightings li .diff.positive:before {
   content: '↑ ';
 }
-.shippingLaneInfo .sightings li .diff.nochange:before {
+.whales .sightings li .diff.nochange:before,
+.emissions .sightings li .diff.nochange:before,
+.overview .sightings li .diff.nochange:before {
   content: '';
 }
-.shippingLaneInfo .nochange p.summary {
+.whales .nochange p.summary,
+.emissions .nochange p.summary,
+.overview .nochange p.summary {
   font-size: 14px;
   font-style: italic;
 }
-.shippingLaneInfo .nochange .sightings li .diff {
+.whales .nochange .sightings li .diff,
+.emissions .nochange .sightings li .diff,
+.overview .nochange .sightings li .diff {
   display: none;
 }
-.shippingLaneInfo .nochange .sightings li .count {
+.whales .nochange .sightings li .count,
+.emissions .nochange .sightings li .count,
+.overview .nochange .sightings li .count {
   display: none;
 }
-.shippingLaneInfo .nochange .sightings li:after {
+.whales .nochange .sightings li:after,
+.emissions .nochange .sightings li:after,
+.overview .nochange .sightings li:after {
   content: 'no change';
   float: right;
   color: grey;
@@ -524,26 +600,40 @@
   font-size: 14px;
   top: 0;
 }
-.shippingLaneInfo .habitat .change:before {
+.whales .habitat .change:before,
+.emissions .habitat .change:before,
+.overview .habitat .change:before {
   content: ' A ';
 }
-.shippingLaneInfo .habitat .change:after {
+.whales .habitat .change:after,
+.emissions .habitat .change:after,
+.overview .habitat .change:after {
   content: '% decrease compared to the existing shipping lane.';
 }
-.shippingLaneInfo .habitat .change.positive {
+.whales .habitat .change.positive,
+.emissions .habitat .change.positive,
+.overview .habitat .change.positive {
   color: #cd0000;
 }
-.shippingLaneInfo .habitat .change.positive:after {
+.whales .habitat .change.positive:after,
+.emissions .habitat .change.positive:after,
+.overview .habitat .change.positive:after {
   content: '% increase compared to the existing shipping lane.';
 }
-.shippingLaneInfo .habitat.nochange .change {
+.whales .habitat.nochange .change,
+.emissions .habitat.nochange .change,
+.overview .habitat.nochange .change {
   display: none;
 }
-.shippingLaneInfo .habitat.nochange .measure:after {
+.whales .habitat.nochange .measure:after,
+.emissions .habitat.nochange .measure:after,
+.overview .habitat.nochange .measure:after {
   font-style: italic;
   content: ' No siginificant difference compared to the existing shipping lane.';
 }
-.shippingLaneInfo li.Blue:after {
+.whales li.Blue:after,
+.emissions li.Blue:after,
+.overview li.Blue:after {
   content: 'Endangered';
   font-size: 10px;
   padding: 1px 4px;
@@ -552,14 +642,20 @@
   position: relative;
   top: -1px;
 }
-.shippingLaneInfo .collapsed .sightings li:nth-child(n+4) {
+.whales .collapsed .sightings li:nth-child(n+4),
+.emissions .collapsed .sightings li:nth-child(n+4),
+.overview .collapsed .sightings li:nth-child(n+4) {
   display: none;
 }
-.shippingLaneInfo .collapsed .moreResults {
+.whales .collapsed .moreResults,
+.emissions .collapsed .moreResults,
+.overview .collapsed .moreResults {
   display: block;
   float: left;
   color: #6c9390;
 }
-.shippingLaneInfo .moreResults {
+.whales .moreResults,
+.emissions .moreResults,
+.overview .moreResults {
   display: none;
 }

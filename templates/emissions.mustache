@@ -1,0 +1,22 @@
+<div class="costs reportSection {{lengthChangeClass}}">
+  <h4>Distance and Fuel Costs</h4>
+  <p>The new shipping lane has a length of <strong>{{new_length}}</strong> miles.</p>
+  {{#significantDistanceChange}}
+  <p class="summary"><span class="measure">{{lengthPercentChange}}</span> each year for all transits</p>
+  <div class="distance">
+    <span class="measure">{{lengthChange}}</span>
+    change in length
+  </div>
+  <div class="fuel">
+    <span class="measure">{{tonsFuelChange}}</span>
+    in fuel consumption
+  </div>
+  <div class="cost">
+    <span class="measure">${{costChange}}</span>
+    in voyage costs
+  </div>
+  {{/significantDistanceChange}}
+  {{^significantDistanceChange}}
+  <p class="summary">No significant difference from existing configuration.</p>
+  {{/significantDistanceChange}}
+</div>
