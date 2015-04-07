@@ -1,0 +1,27 @@
+{{#anyAttributes}}
+    <div class="reportSection tableContainer">
+    	<h4>Attributes for {{sketchClass.name}} </h4>
+	    <table>
+	      <thead>
+	        <tr>
+	          <th>Name</th>
+	          <th>Value</th>
+	        </tr>
+	      </thead>
+	    <tbody>
+	        {{#attributes}}
+	          <tr>
+	            <td>{{name}}</td>
+	            <td>{{value}}</td>
+	          </tr>
+	        {{/attributes}}
+	    </tbody>
+    	</table>
+  </div>
+{{/anyAttributes}}
+
+<div class="distance reportSection">
+  <h4>Size</h4>
+  	<p class="large">The selected zone is <strong>{{zonesize}}</strong> square miles.</p>
+</div>
+
