@@ -3,35 +3,35 @@ module.exports = [
     id: 'Blue'
     name: 'Blue Whale'
     scientificName: 'Balaenoptera musculus'
-    unchangedCount: 150
+    unchangedCount: 118
     count: 0
   },
   {
     id: 'Humpback'
     name: 'Humpback Whale'
     scientificName: 'Megaptera novaeangliae'
-    unchangedCount: 218
+    unchangedCount: 176
     count: 0
   },
   {
     id: 'Gray'
     name: 'Gray Whale'
     scientificName: 'Eschrichtius robustus'
-    unchangedCount: 45
+    unchangedCount: 33
     count: 0
   },
   {
     id: 'Fin'
     name: 'Fin Whale'
     scientificName: 'Balaenoptera physalus'
-    unchangedCount: 6
+    unchangedCount: 7
     count: 0
   },
   {
     id: 'Minke'
     name: 'Minke Whale'
     scientificName: 'Balaenoptera acutorostrata'
-    unchangedCount: 16
+    unchangedCount: 21
     count: 0
   },
   {

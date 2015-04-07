@@ -48,17 +48,12 @@ class ZoneWhalesTab extends ReportTab
         record.percentChange = 0
         record.changeClass = 'nochange'
 
-
-
     context =
       sketchClass: @app.sketchClasses.get(@model.get 'sketchclass').forTemplate()
       sketch: @model.forTemplate()
       whaleSightings: sightingsData
 
-
-
     @$el.html @template.render context, @partials
-
     @enableLayerTogglers(@$el)
 
     # Shouldn't we give some feedback to the user if the layer isn't present in the layer tree?

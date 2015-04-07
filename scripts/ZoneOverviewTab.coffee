@@ -32,7 +32,6 @@ class ZoneOverviewTab extends ReportTab
     anyAttributes = attributes.length? > 0
     zonesize = @recordSet('ZoneSize', 'Size').float('SIZE_SQMI')
 
-    console.log("num attrs ", attributes)
     context =
       sketchClass: @sketchClass.forTemplate()
       zonesize: zonesize 

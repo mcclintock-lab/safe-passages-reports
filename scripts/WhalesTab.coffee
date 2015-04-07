@@ -52,14 +52,17 @@ class WhalesTab extends ReportTab
       area = area + feature.Shape_Area
 
     intersectedIsobathM = area / 1000
-    existingIsobathIntersection = 54982
+    existingIsobathIntersection = 39264
     isobathChange = intersectedIsobathM - existingIsobathIntersection
+
     isobathChangeClass = if isobathChange > 0 then 'positive' else 'negative'
     isobathPercentChange = Math.round((Math.abs(isobathChange) / existingIsobathIntersection) * 100)
-    existingLength = 122.75
+    existingLength = 158.35
+    sigDistanceChange = Math.abs(existingLength - length) > 0.1
+    console.log("sig dist change:", Math.abs(existingLength - length))
 
     context =
-      significantDistanceChange: Math.abs(existingLength - length) > 0.1
+      significantDistanceChange: sigDistanceChange
       sketchClass: @app.sketchClasses.get(@model.get 'sketchclass').forTemplate()
       sketch: @model.forTemplate()
 
