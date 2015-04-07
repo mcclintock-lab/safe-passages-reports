@@ -35,7 +35,7 @@ class ZoneWhalesTab extends ReportTab
       species = feature.Species
       unless species in _.keys(sightings)
         sightings[feature.Species] = 0
-      sightings[species] = sightings[species] + feature.FREQUENCY
+      sightings[species] = sightings[species] + parseInt(feature.FREQUENCY)
     sightingsData = _.map sightingsTemplate, (s) -> _.clone(s)
 
     for record in sightingsData

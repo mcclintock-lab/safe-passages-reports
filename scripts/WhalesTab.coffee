@@ -29,7 +29,7 @@ class WhalesTab extends ReportTab
     window.results = @results
     isobath = @recordSet('ShippingLaneReport', 'Habitats')
     whaleSightings = @recordSet('ShippingLaneReport', 'WhaleCount').toArray()
-
+    length = Math.round(@recordSet('ShippingLaneReport', 'NewLength').data.value,1)
     sightings = {}
     for feature in whaleSightings
       species = feature.Species
@@ -57,7 +57,7 @@ class WhalesTab extends ReportTab
 
     isobathChangeClass = if isobathChange > 0 then 'positive' else 'negative'
     isobathPercentChange = Math.round((Math.abs(isobathChange) / existingIsobathIntersection) * 100)
-    existingLength = 158.35
+    existingLength = 158
     sigDistanceChange = Math.abs(existingLength - length) > 0.1
     console.log("sig dist change:", Math.abs(existingLength - length))
 
