@@ -32,9 +32,8 @@ class EmissionsTab extends ReportTab
     existingLength = 158.35
     length = new_length
 
-
-    new_co2_emissions = Math.round(@recordSet('Emissions', 'NewCO2').data.value,1)
-    orig_co2_emissions = Math.round(@recordSet('Emissions', 'OrigCO2').data.value,1)
+    new_co2_emissions = Number(@recordSet('Emissions', 'NewCO2').data.value).toFixed(2)
+    orig_co2_emissions = Number(@recordSet('Emissions', 'OrigCO2').data.value).toFixed(2)
     co2EmissionsIncreased = orig_co2_emissions - new_co2_emissions < 0
     co2EmissionsChangeClass = if co2EmissionsIncreased then 'positive' else 'negative'
     co2EmissionsPercentChange =  Math.abs(((orig_co2_emissions - new_co2_emissions) / new_co2_emissions) * 100)
@@ -42,8 +41,8 @@ class EmissionsTab extends ReportTab
       co2EmissionsChangeClass = 'nochange'
     significantCO2EmissionsChange = Math.abs(orig_co2_emissions - new_co2_emissions) > 0.1
 
-    new_nox_emissions = Math.round(@recordSet('Emissions', 'NewNOX').data.value,1)
-    orig_nox_emissions = Math.round(@recordSet('Emissions', 'OrigNOX').data.value,1)
+    new_nox_emissions = Number(@recordSet('Emissions', 'NewNOX').data.value).toFixed(3)
+    orig_nox_emissions = Number(@recordSet('Emissions', 'OrigNOX').data.value).toFixed(3)
     noxEmissionsIncreased = orig_nox_emissions - new_nox_emissions < 0
     noxEmissionsChangeClass = if noxEmissionsIncreased then 'positive' else 'negative'
     noxEmissionsPercentChange =  Math.abs(((orig_nox_emissions - new_nox_emissions) / new_nox_emissions) * 100)
@@ -51,8 +50,8 @@ class EmissionsTab extends ReportTab
       noxEmissionsChangeClass = 'nochange'
     significantNOXEmissionsChange = Math.abs(orig_nox_emissions - new_nox_emissions) > 0.1
 
-    new_pm_emissions = Math.round(@recordSet('Emissions', 'NewPM').data.value,1)
-    orig_pm_emissions = Math.round(@recordSet('Emissions', 'OrigPM').data.value,1)
+    new_pm_emissions = Number(@recordSet('Emissions', 'NewPM').data.value).toFixed(3)
+    orig_pm_emissions = Number(@recordSet('Emissions', 'OrigPM').data.value).toFixed(3)
     pmEmissionsIncreased = orig_pm_emissions - new_pm_emissions < 0
     pmEmissionsChangeClass = if pmEmissionsIncreased then 'positive' else 'negative'
     pmEmissionsPercentChange =  Math.abs(((orig_pm_emissions - new_pm_emissions) / new_pm_emissions) * 100)
@@ -67,22 +66,22 @@ class EmissionsTab extends ReportTab
       new_length: new_length
 
       significantCO2EmissionsChange: significantCO2EmissionsChange
-      new_co2_emissions: Math.round(new_co2_emissions)
-      orig_co2_emissions: Math.round(orig_co2_emissions)
+      new_co2_emissions: new_co2_emissions
+      orig_co2_emissions: orig_co2_emissions
       co2EmissionsIncreased: co2EmissionsIncreased
       co2EmissionsChangeClass: co2EmissionsChangeClass
       co2EmissionsPercentChange: Math.round(co2EmissionsPercentChange)
 
       significantNOXEmissionsChange: significantNOXEmissionsChange
-      new_nox_emissions: Math.round(new_nox_emissions)
-      orig_nox_emissions: Math.round(orig_nox_emissions)
+      new_nox_emissions: new_nox_emissions
+      orig_nox_emissions: orig_nox_emissions
       noxEmissionsIncreased: noxEmissionsIncreased
       noxEmissionsChangeClass: noxEmissionsChangeClass
       noxEmissionsPercentChange: Math.round(noxEmissionsPercentChange)
 
       significantPMEmissionsChange: significantPMEmissionsChange
-      new_pm_emissions: Math.round(new_pm_emissions)
-      orig_pm_emissions: Math.round(orig_pm_emissions)
+      new_pm_emissions: new_pm_emissions
+      orig_pm_emissions: orig_pm_emissions
       pmEmissionsIncreased: pmEmissionsIncreased
       pmEmissionsChangeClass: pmEmissionsChangeClass
       pmEmissionsPercentChange: Math.round(pmEmissionsPercentChange)
