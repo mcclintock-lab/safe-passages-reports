@@ -29,7 +29,7 @@ class EmissionsTab extends ReportTab
     window.results = @results
 
     new_length = Math.round(@recordSet('ShippingLaneReport', 'NewLength').data.value,1)
-    existingLength = 122.75
+    existingLength = 158.35
     length = new_length
 
 
