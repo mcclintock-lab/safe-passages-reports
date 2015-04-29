@@ -37,6 +37,7 @@ class WhalesTab extends ReportTab
         sightings[feature.Species] = 0
       sightings[species] = sightings[species] + feature.FREQUENCY
     sightingsData = _.map sightingsTemplate, (s) -> _.clone(s)
+    console.log(".......sightings: ", sightingsData)
     for record in sightingsData
       record.count = sightings[record.id] if sightings[record.id]
       record.diff = record.count - record.unchangedCount
@@ -59,7 +60,6 @@ class WhalesTab extends ReportTab
     isobathPercentChange = Math.round((Math.abs(isobathChange) / existingIsobathIntersection) * 100)
     existingLength = 158
     sigDistanceChange = Math.abs(existingLength - length) > 0.1
-    console.log("sig dist change:", Math.abs(existingLength - length))
 
     context =
       significantDistanceChange: sigDistanceChange
