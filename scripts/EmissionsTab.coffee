@@ -29,61 +29,63 @@ class EmissionsTab extends ReportTab
     window.results = @results
 
     new_length = Math.round(@recordSet('ShippingLaneReport', 'NewLength').data.value,1)
-    new_emissions = Math.round(@recordSet('Emissions', 'Emissions').data.value,1)
-    original_emissions = Math.round(@recordSet('Emissions', 'OriginalEmissions').data.value,1)
-
-
     existingLength = 122.75
     length = new_length
-    #length = @model.get('geometry').features[0].attributes.Shape_Length / 5048
-    percentChange = Math.abs(((existingLength - length) / existingLength) * 100)
-    lengthIncreased = existingLength - length < 0
-    lengthChangeClass = if lengthIncreased then 'positive' else 'negative'
-    if Math.abs(existingLength - length) < 0.01
-      lengthChangeClass = 'nochange'
-
-    emissionsIncreased = original_emissions - new_emissions < 0
-    emissionsChangeClass = if emissionsIncreased then 'positive' else 'negative'
-    emissionsPercentChange =  Math.abs(((original_emissions - new_emissions) / existingLength) * 100)
-    if Math.abs(original_emissions - new_emissions) < 0.01
-      emissionsChangeClass = 'nochange'
 
 
-    # from http://www.bren.ucsb.edu/research/documents/whales_report.pdf
-    # increase in voyage cost per nm
-    vc = 3535
-    # increase in operating costs
-    oc = 2315
-    # page 40 lists lane increase as 13.8nm
-    costIncreasePerNMPerTransit = (vc + oc) / 13.8
-    # I'm working backwords here, so all this shit is terribly inaccurate
-    fuelCost = 625 # per ton
-    # assumes voyage cost is all fuel (wrong - ignoring lubricant, dock fees, etc)
-    tonsFuelPerNM = (vc / 13.8) / 625
-    # 5,725 transits - page 87
-    costIncreasePerNM = costIncreasePerNMPerTransit * 5725
-    costChange = Math.abs(costIncreasePerNM * (length - existingLength))
-    tonsFuel = tonsFuelPerNM * length
+    new_co2_emissions = Math.round(@recordSet('Emissions', 'NewCO2').data.value,1)
+    orig_co2_emissions = Math.round(@recordSet('Emissions', 'OrigCO2').data.value,1)
+    co2EmissionsIncreased = orig_co2_emissions - new_co2_emissions < 0
+    co2EmissionsChangeClass = if co2EmissionsIncreased then 'positive' else 'negative'
+    co2EmissionsPercentChange =  Math.abs(((orig_co2_emissions - new_co2_emissions) / new_co2_emissions) * 100)
+    if Math.abs(orig_co2_emissions - new_co2_emissions) < 0.01
+      co2EmissionsChangeClass = 'nochange'
+    significantCO2EmissionsChange = Math.abs(orig_co2_emissions - new_co2_emissions) > 0.1
+
+    new_nox_emissions = Math.round(@recordSet('Emissions', 'NewNOX').data.value,1)
+    orig_nox_emissions = Math.round(@recordSet('Emissions', 'OrigNOX').data.value,1)
+    noxEmissionsIncreased = orig_nox_emissions - new_nox_emissions < 0
+    noxEmissionsChangeClass = if noxEmissionsIncreased then 'positive' else 'negative'
+    noxEmissionsPercentChange =  Math.abs(((orig_nox_emissions - new_nox_emissions) / new_nox_emissions) * 100)
+    if Math.abs(orig_nox_emissions - new_nox_emissions) < 0.01
+      noxEmissionsChangeClass = 'nochange'
+    significantNOXEmissionsChange = Math.abs(orig_nox_emissions - new_nox_emissions) > 0.1
+
+    new_pm_emissions = Math.round(@recordSet('Emissions', 'NewPM').data.value,1)
+    orig_pm_emissions = Math.round(@recordSet('Emissions', 'OrigPM').data.value,1)
+    pmEmissionsIncreased = orig_pm_emissions - new_pm_emissions < 0
+    pmEmissionsChangeClass = if pmEmissionsIncreased then 'positive' else 'negative'
+    pmEmissionsPercentChange =  Math.abs(((orig_pm_emissions - new_pm_emissions) / new_pm_emissions) * 100)
+
+    if Math.abs(orig_pm_emissions - new_pm_emissions) < 0.01
+      pmEmissionsChangeClass = 'nochange'
+    significantPMEmissionsChange = Math.abs(orig_pm_emissions - new_pm_emissions) > 0.1
+
     context =
-      significantDistanceChange: Math.abs(existingLength - length) > 0.1
-      significantEmissionsChange: Math.abs(original_emissions - new_emissions) > 0.1
-
       sketchClass: @app.sketchClasses.get(@model.get 'sketchclass').forTemplate()
       sketch: @model.forTemplate()
-      length: Math.round(length * 100) / 100
-      lengthChangeClass: lengthChangeClass
-      lengthPercentChange: Math.round(percentChange * 10) / 10
-      costChange: addCommas(Math.round(costChange * 100) / 100)
-      tonsFuelPerTransit: Math.round(tonsFuel)
-      tonsFuelChange: Math.round((tonsFuel - (tonsFuelPerNM * existingLength)) * 5725)
-      lengthChange: Math.round((length - existingLength) * 100) / 100
-
       new_length: new_length
-      new_emissions: Math.round(new_emissions)
-      orig_emissions: Math.round(original_emissions)
-      emissionsIncreased: emissionsIncreased
-      emissionsChangeClass: emissionsChangeClass
-      emissionsPercentChange: Math.round(emissionsPercentChange)
+
+      significantCO2EmissionsChange: significantCO2EmissionsChange
+      new_co2_emissions: Math.round(new_co2_emissions)
+      orig_co2_emissions: Math.round(orig_co2_emissions)
+      co2EmissionsIncreased: co2EmissionsIncreased
+      co2EmissionsChangeClass: co2EmissionsChangeClass
+      co2EmissionsPercentChange: Math.round(co2EmissionsPercentChange)
+
+      significantNOXEmissionsChange: significantNOXEmissionsChange
+      new_nox_emissions: Math.round(new_nox_emissions)
+      orig_nox_emissions: Math.round(orig_nox_emissions)
+      noxEmissionsIncreased: noxEmissionsIncreased
+      noxEmissionsChangeClass: noxEmissionsChangeClass
+      noxEmissionsPercentChange: Math.round(noxEmissionsPercentChange)
+
+      significantPMEmissionsChange: significantPMEmissionsChange
+      new_pm_emissions: Math.round(new_pm_emissions)
+      orig_pm_emissions: Math.round(orig_pm_emissions)
+      pmEmissionsIncreased: pmEmissionsIncreased
+      pmEmissionsChangeClass: pmEmissionsChangeClass
+      pmEmissionsPercentChange: Math.round(pmEmissionsPercentChange)
 
     @$el.html @template.render context, @partials
 
