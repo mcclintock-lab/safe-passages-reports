@@ -27,15 +27,14 @@ class OverviewTab extends ReportTab
 
   render: () ->
     window.results = @results
-    existingLength = 158
+    existingLength = 158.35
     length = Math.round(@recordSet('ShippingLaneReport', 'NewLength').data.value,1)
     console.log("new length: ", length)
     #length = @model.get('geometry').features[0].attributes.Shape_Length / 5048
-    percentChange = Math.abs(((existingLength - length) / existingLength) * 100)
+    percentChange = Math.abs(((existingLength - length) / length) * 100)
     lengthIncreased = existingLength - length < 0
     lengthChange = Math.round(Math.abs(existingLength-length))
     lengthChangeClass = if lengthIncreased then 'positive' else 'negative'
-    console.log("----dist ", (existingLength - length))
     if Math.abs(existingLength - length) < 0.01
       lengthChangeClass = 'nochange'
 
