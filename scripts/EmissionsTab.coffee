@@ -33,6 +33,7 @@ class EmissionsTab extends ReportTab
     length = new_length
 
 
+
     new_co2_emissions = parseFloat(@recordSet('Emissions', 'NewCO2').data.value)
     orig_co2_emissions = parseFloat(@recordSet('Emissions', 'OrigCO2').data.value)
     co2EmissionsIncreased = orig_co2_emissions - new_co2_emissions < 0
