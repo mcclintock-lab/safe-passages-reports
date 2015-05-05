@@ -57,7 +57,10 @@ module.exports = (grunt) ->
         dest: 'dist/shipping.js'
       zone:
         src: 'scripts/zone.coffee'
-        dest: 'dist/zone.js'        
+        dest: 'dist/zone.js'      
+      proposal:
+        src: 'scripts/proposal.coffee'
+        dest: 'dist/proposal.js'    
       options:
         transform: ['coffeeify']
         debug: true

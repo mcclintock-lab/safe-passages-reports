@@ -21,8 +21,14 @@
 {{/anyAttributes}}
 
 <div class="distance reportSection">
-  <h4>Size</h4>
+  <h4>Zone Sizes</h4>
   	<p class="large">The selected {{#isCollection}}proposal contains zones that are {{/isCollection}}
   		{{^isCollection}} zone is {{/isCollection}} <strong>{{zonesize}}</strong> square miles.</p>
 </div>
 
+<div class="distance reportSection">
+  <h4>Shipping Lane Length</h4>
+	<div class="length_diff">
+		The shipping lane is <strong>{{length}}</strong> nautical miles long.
+	</div>
+</div>

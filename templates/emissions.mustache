@@ -22,14 +22,24 @@
 </div>
 -->
 <div class="emissions reportSection {{co2EmissionsChangeClass}}">
-  <h4>CO<sub>2</sub> Emissions</h4>
-    <p class="summary_emissions"><span class="measure">{{co2EmissionsPercentChange}}</span> tons CO<sub>2</sub> emissions</p>
-    <p>Assuming a speed of 16 knots, CO<sub>2</sub> emissions for the new shipping lane are approximately 
+  <h4>Emissions</h4>
+    <p class="summary_emissions"><span class="measure">{{co2EmissionsPercentChange}}</span>  emissions</p>
+    <p><strong>CO<sub>2</sub></strong> emissions for the new shipping lane are approximately 
     <strong>{{new_co2_emissions}} tons</strong>, {{#co2EmissionsIncreased}}up{{/co2EmissionsIncreased}}{{^co2EmissionsIncreased}}down
     {{/co2EmissionsIncreased}} from the previous emissions of <strong>{{orig_co2_emissions}} tons</strong>.</p>
-  <p><i>Note: Emissions numbers are based on averages and should only be used for comparative purposes.</i></p>
+
+    <p><strong>NO<sub>x</sub></strong> emissions for the new shipping lane are approximately 
+    <strong>{{new_nox_emissions}} tons</strong>, {{#noxEmissionsIncreased}}up{{/noxEmissionsIncreased}}{{^noxEmissionsIncreased}}down
+    {{/noxEmissionsIncreased}} from the previous emissions of <strong>{{orig_nox_emissions}} tons</strong>.</p>
+
+    <p><strong>PM<sub>10</sub></strong> emissions for the new shipping lane are approximately 
+    <strong>{{new_pm_emissions}} tons</strong>, {{#pmEmissionsIncreased}}up{{/pmEmissionsIncreased}}{{^pmEmissionsIncreased}}down
+    {{/pmEmissionsIncreased}} from the previous emissions of <strong>{{orig_pm_emissions}} tons</strong>.</p>
+
+  <p><i>Note: Emissions numbers are based on averages and should only be used for comparative purposes. Estimates assume a vessel speed of 16 knots.</i></p>
 </div>
 
+<!--
 <div class="emissions reportSection {{noxEmissionsChangeClass}}">
   <h4>NO<sub>x</sub> Emissions</h4>
     <p class="summary_emissions"><span class="measure">{{noxEmissionsPercentChange}}</span> tons NO<sub>x</sub> emissions</p>
@@ -47,3 +57,4 @@
     {{/pmEmissionsIncreased}} from the previous emissions of <strong>{{orig_pm_emissions}} tons</strong>.</p>
   <p><i>Note: Emissions numbers are based on averages and should only be used for comparative purposes.</i></p>
 </div>
+-->

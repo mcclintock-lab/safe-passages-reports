@@ -27,6 +27,7 @@ class OverviewTab extends ReportTab
 
   render: () ->
     window.results = @results
+    isCollection = @model.isCollection()
     existingLength = 158.35
     length = Math.round(@recordSet('ShippingLaneReport', 'NewLength').data.value,1)
     console.log("new length: ", length)

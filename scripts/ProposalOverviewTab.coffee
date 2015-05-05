@@ -16,29 +16,25 @@ addCommas = (nStr) ->
     x1 = x1.replace(rgx, '$1' + ',' + '$2')
   return x1 + x2
 
-class ZoneOverviewTab extends ReportTab
+class ProposalOverviewTab extends ReportTab
   name: 'Overview'
-  className: 'zoneOverview'
-  template: templates.zoneOverview
+  className: 'overview'
+  template: templates.proposalOverview
   events:
     "click a[rel=toggle-layer]" : '_handleReportLayerClick'
     "click a.moreResults":        'onMoreResultsClick'
-  dependencies: ['ZoneSize']
+  dependencies: ['ShippingLaneReport','ZoneSize' ]
 
   render: () ->
     window.results = @results
     isCollection = @model.isCollection()
-    attributes = @model.getAttributes()
-    console.log("attributes: ", attributes.attributesTable)
-    anyAttributes = attributes.length? > 0
-    zonesize = @recordSet('ZoneSize', 'Size').float('SIZE_SQMI')
 
+    length = Math.round(@recordSet('ShippingLaneReport', 'NewLength').data.value,1)
+    zonesize = @recordSet('ZoneSize', 'Size').float('SIZE_SQMI')
     context =
-      sketchClass: @sketchClass.forTemplate()
-      zonesize: zonesize 
-      attributes:attributes
-      anyAttributes: anyAttributes
-      isCollection: isCollection
+      
+      length: length 
+      zonesize: zonesize
 
     @$el.html @template.render context, @partials
 
@@ -58,4 +54,4 @@ class ZoneOverviewTab extends ReportTab
     e?.preventDefault?()
     $(e.target).closest('.reportSection').removeClass 'collapsed'
 
-module.exports = ZoneOverviewTab
+module.exports = ProposalOverviewTab
