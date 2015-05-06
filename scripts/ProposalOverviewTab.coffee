@@ -30,11 +30,11 @@ class ProposalOverviewTab extends ReportTab
     isCollection = @model.isCollection()
 
     length = Math.round(@recordSet('ShippingLaneReport', 'NewLength').data.value,1)
-    zonesize = @recordSet('ZoneSize', 'Size').float('SIZE_SQMI')
+    zonesizes = @recordSet('ZoneSize', 'Size').toArray()
+
     context =
-      
       length: length 
-      zonesize: zonesize
+      zones: zonesizes
 
     @$el.html @template.render context, @partials
 

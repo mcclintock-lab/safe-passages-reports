@@ -809,3 +809,18 @@
 .overview .moreResults {
   display: none;
 }
+.in-report-header {
+  font-size: 14px;
+  padding-left: 5px;
+  padding-top: 10px;
+}
+.emissions-report {
+  padding-left: 10px;
+  display: block;
+  margin-left: 10px;
+}
+.lane-name {
+  font-style: italic;
+  display: inline-block;
+  font-weight: bold;
+}

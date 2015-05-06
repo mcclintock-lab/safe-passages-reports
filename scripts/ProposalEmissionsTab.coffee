@@ -31,6 +31,7 @@ class ProposalEmissionsTab extends ReportTab
     reductions = @parseReductions emissions
     emissionsReductions = []
     for key in Object.keys(reductions)
+      console.log("red: ", reductions[key])
       emissionsReductions.push(reductions[key])
     context =
       sketchClass: @app.sketchClasses.get(@model.get 'sketchclass').forTemplate()

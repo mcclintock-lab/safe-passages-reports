@@ -22,8 +22,11 @@
 
 <div class="distance reportSection">
   <h4>Zone Sizes</h4>
-  	<p class="large">The selected {{#isCollection}}proposal contains zones that are {{/isCollection}}
-  		{{^isCollection}} zone is {{/isCollection}} <strong>{{zonesize}}</strong> square miles.</p>
+  {{#zones}}
+  	<p class="large">
+  		The selected proposal contains <strong>{{SC_ID}}</strong> sketches that total <strong>{{SIZE_SQMI}}</strong> square miles.
+  	</p>
+  {{/zones}}
 </div>
 
 <div class="distance reportSection">

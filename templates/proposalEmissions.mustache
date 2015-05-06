@@ -2,21 +2,23 @@
 <div class="emissions reportSection {{co2EmissionsChangeClass}}">
   <h4>Emissions</h4>
 	  	{{#emissionsReductions}}
-	  		<span>For shipping lane {{NAME}}, emission reductions are:</span></br>
-		    <p class="summary_emissions"><span class="measure">{{PERC_CO2}}</span> CO<sub>2</sub> emissions</p>
-		    <p><strong>CO<sub>2</sub></strong> emissions for the new shipping lane are approximately 
-		    <strong>{{NEW_CO2}} tons</strong>, {{#co2EmissionsIncreased}}up{{/co2EmissionsIncreased}}{{^co2EmissionsIncreased}}down
-		    {{/co2EmissionsIncreased}} from the previous emissions of <strong>{{ORIG_CO2}} tons</strong>.</p>
+	  		<div class="in-report-header">For shipping lane <div class="lane-name">{{NAME}}</div>, emission reductions are:</div>
+	  		<div class="emissions-report">
+			    <p class="summary_emissions"><span class="measure">{{PERC_CO2}}</span> CO<sub>2</sub> emissions</p>
+			    <p><strong>CO<sub>2</sub></strong> emissions for the new shipping lane are approximately 
+			    <strong>{{NEW_CO2}} tons</strong>, {{#co2EmissionsIncreased}}up{{/co2EmissionsIncreased}}{{^co2EmissionsIncreased}}down
+			    {{/co2EmissionsIncreased}} from the previous emissions of <strong>{{ORIG_CO2}} tons</strong>.</p>
 
-		    <p class="summary_emissions"><span class="measure">{{PERC_NOX}}</span> NO<sub>x</sub> emissions</p>
-		    <p><strong>NO<sub>x</sub></strong> emissions for the new shipping lane are approximately 
-		    <strong>{{NEW_NOX}} tons</strong>, {{#noxEmissionsIncreased}}up{{/noxEmissionsIncreased}}{{^noxEmissionsIncreased}}down
-		    {{/noxEmissionsIncreased}} from the previous emissions of <strong>{{ORIG_NOX}} tons</strong>.</p>
+			    <p class="summary_emissions"><span class="measure">{{PERC_NOX}}</span> NO<sub>x</sub> emissions</p>
+			    <p><strong>NO<sub>x</sub></strong> emissions for the new shipping lane are approximately 
+			    <strong>{{NEW_NOX}} tons</strong>, {{#noxEmissionsIncreased}}up{{/noxEmissionsIncreased}}{{^noxEmissionsIncreased}}down
+			    {{/noxEmissionsIncreased}} from the previous emissions of <strong>{{ORIG_NOX}} tons</strong>.</p>
 
-		    <p class="summary_emissions"><span class="measure">{{PERC_PM10}}</span> PM<sub>10</sub> emissions</p>
-		    <p><strong>PM<sub>10</sub></strong> emissions for the new shipping lane are approximately 
-		    <strong>{{NEW_PM10}} tons</strong>, {{#pmEmissionsIncreased}}up{{/pmEmissionsIncreased}}{{^pmEmissionsIncreased}}down
-	    	{{/pmEmissionsIncreased}} from the previous emissions of <strong>{{ORIG_PM10}} tons</strong>.</p>
+			    <p class="summary_emissions"><span class="measure">{{PERC_PM10}}</span> PM<sub>10</sub> emissions</p>
+			    <p><strong>PM<sub>10</sub></strong> emissions for the new shipping lane are approximately 
+			    <strong>{{NEW_PM10}} tons</strong>, {{#pmEmissionsIncreased}}up{{/pmEmissionsIncreased}}{{^pmEmissionsIncreased}}down
+		    	{{/pmEmissionsIncreased}} from the previous emissions of <strong>{{ORIG_PM10}} tons</strong>.</p>
+	    	</div>
 	    {{/emissionsReductions}}
 	  <p><i>Note: Emissions numbers are based on averages and should only be used for comparative purposes. Estimates assume a vessel speed of 16 knots.</i></p>
 
