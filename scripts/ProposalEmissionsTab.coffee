@@ -33,6 +33,7 @@ class ProposalEmissionsTab extends ReportTab
     for key in Object.keys(reductions)
       console.log("red: ", reductions[key])
       emissionsReductions.push(reductions[key])
+
     context =
       sketchClass: @app.sketchClasses.get(@model.get 'sketchclass').forTemplate()
       sketch: @model.forTemplate()
@@ -44,7 +45,9 @@ class ProposalEmissionsTab extends ReportTab
 
   parseReductions: (emissions) =>
     reductions = {}
-    console.log("emissions:", emissions)
+    pos = "positive"
+    neg = "negative"
+    nochange = "nochange"
     for er in emissions
       name = er.NAME
       type = er.NEW_OR_OLD
@@ -70,38 +73,65 @@ class ProposalEmissionsTab extends ReportTab
         currRed.PERC_CO2 = parseFloat(er.CO2)
         console.log("perc co2: ", er.CO2)
         if currRed.PERC_CO2 > 0
-          
+          currRed.CO2_CHANGE_CLASS = neg
           currRed.co2EmissionsIncreased = false
         else
+          if currRed.PERC_CO2 == 0
+            currRed.NO_CO2_CHANGE = true
+          else
+            currRed.NO_CO2_CHANGE = false
+            
+          currRed.CO2_CHANGE_CLASS = pos
           currRed.PERC_CO2 = Math.abs(currRed.PERC_CO2)
           currRed.co2EmissionsIncreased = true
 
         currRed.PERC_NOX = parseFloat(er.NOX)
         if currRed.PERC_NOX > 0
-          
+          currRed.NOX_CHANGE_CLASS = neg
           currRed.noxEmissionsIncreased = false
         else
+          if currRed.PERC_NOX == 0
+            currRed.NO_NOX_CHANGE = true
+          else
+            currRed.NO_NOX_CHANGE = false
+          
+          currRed.NOX_CHANGE_CLASS = pos
+
           currRed.PERC_NOX = Math.abs(currRed.PERC_NOX)
           currRed.noxEmissionsIncreased = true
 
         currRed.PERC_SOX = parseFloat(er.SOX)
         if currRed.PERC_SOX > 0
-          
+          currRed.SOX_CHANGE_CLASS = neg
           currRed.soxEmissionsIncreased = false
         else
+          if currRed.PERC_SOX == 0
+            currRed.NO_SOX_CHANGE = true
+          else
+            currRed.NO_SOX_CHANGE = false
+
+          currRed.SOX_CHANGE_CLASS = pos
           currRed.PERC_SOX = Math.abs(currRed.PERC_SOX)
           currRed.soxEmissionsIncreased = true
 
         currRed.PERC_PM10 = parseFloat(er.PM10)
         if currRed.PERC_PM10 > 0
-          
+          currRed.PM10_CHANGE_CLASS = neg
           currRed.pmEmissionsIncreased = false
         else
+          if currRed.PERC_PM10 == 0
+            currRed.NO_PM10_CHANGE = true
+          else
+            currRed.NO_PM10_CHANGE = false
+          
+          currRed.PM10_CHANGE_CLASS = pos
+
           currRed.PERC_PM10 = Math.abs(currRed.PERC_PM10)
           currRed.pmEmissionsIncreased = true
 
+
       reductions[name] = currRed
-    
+      
     return reductions
 
 

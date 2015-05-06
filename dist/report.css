@@ -503,7 +503,6 @@
 .emissions p.summary_emissions .measure:after,
 .overview p.summary_emissions .measure:after {
   font-weight: bold;
-  content: '% increase in';
 }
 .whales p.lane_length,
 .emissions p.lane_length,
@@ -823,4 +822,12 @@
   font-style: italic;
   display: inline-block;
   font-weight: bold;
+}
+.no_emissions_change {
+  color: gray;
+  font-weight: normal;
+  border: none;
+  font-size: 14px;
+  margin-top: 3px;
+  margin-bottom: 3px;
 }

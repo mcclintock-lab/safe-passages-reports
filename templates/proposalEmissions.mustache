@@ -1,26 +1,60 @@
 
 <div class="emissions reportSection {{co2EmissionsChangeClass}}">
   <h4>Emissions</h4>
+  	<div style="font-style:italic;">
+  		The following estimates are the result of changes in emissions based on the introduction of Speed Reduction Zones:
+  	</div>
 	  	{{#emissionsReductions}}
 	  		<div class="in-report-header">For shipping lane <div class="lane-name">{{NAME}}</div>, emission reductions are:</div>
 	  		<div class="emissions-report">
-			    <p class="summary_emissions"><span class="measure">{{PERC_CO2}}</span> CO<sub>2</sub> emissions</p>
-			    <p><strong>CO<sub>2</sub></strong> emissions for the new shipping lane are approximately 
-			    <strong>{{NEW_CO2}} tons</strong>, {{#co2EmissionsIncreased}}up{{/co2EmissionsIncreased}}{{^co2EmissionsIncreased}}down
-			    {{/co2EmissionsIncreased}} from the previous emissions of <strong>{{ORIG_CO2}} tons</strong>.</p>
-
-			    <p class="summary_emissions"><span class="measure">{{PERC_NOX}}</span> NO<sub>x</sub> emissions</p>
-			    <p><strong>NO<sub>x</sub></strong> emissions for the new shipping lane are approximately 
-			    <strong>{{NEW_NOX}} tons</strong>, {{#noxEmissionsIncreased}}up{{/noxEmissionsIncreased}}{{^noxEmissionsIncreased}}down
-			    {{/noxEmissionsIncreased}} from the previous emissions of <strong>{{ORIG_NOX}} tons</strong>.</p>
-
-			    <p class="summary_emissions"><span class="measure">{{PERC_PM10}}</span> PM<sub>10</sub> emissions</p>
-			    <p><strong>PM<sub>10</sub></strong> emissions for the new shipping lane are approximately 
-			    <strong>{{NEW_PM10}} tons</strong>, {{#pmEmissionsIncreased}}up{{/pmEmissionsIncreased}}{{^pmEmissionsIncreased}}down
-		    	{{/pmEmissionsIncreased}} from the previous emissions of <strong>{{ORIG_PM10}} tons</strong>.</p>
+	  			{{#NO_CO2_CHANGE}}
+	  				
+				    <div class="no_emissions_change">
+				    	<strong>No change</strong> in </span> CO<sub>2</sub> emissions of approximately <strong>{{NEW_CO2}} tons</strong>.
+					</div>
+					
+	  			{{/NO_CO2_CHANGE}}
+	  			{{^NO_CO2_CHANGE}}
+		  			<div class="{{CO2_CHANGE_CLASS}}">
+					    <p class="summary_emissions "><span class="measure">{{PERC_CO2}}</span> CO<sub>2</sub> emissions</p>
+					    <p><strong>CO<sub>2</sub></strong> emissions for the new shipping lane are approximately 
+					    <strong>{{NEW_CO2}} tons</strong>, {{#co2EmissionsIncreased}}up{{/co2EmissionsIncreased}}{{^co2EmissionsIncreased}}down
+					    {{/co2EmissionsIncreased}} from the previous emissions of <strong>{{ORIG_CO2}} tons</strong>.</p>
+					</div>
+				{{/NO_CO2_CHANGE}}
+				{{#NO_NOX_CHANGE}}
+	  				
+				    <div class="no_emissions_change">
+				    	<strong>No change</strong> in </span> NO<sub>x</sub> emissions of approximately <strong>{{NEW_NOX}} tons</strong>.
+				    </div>
+					
+				{{/NO_NOX_CHANGE}}
+				{{^NO_NOX_CHANGE}}
+					<div class="{{NOX_CHANGE_CLASS}}">
+					    <p class="summary_emissions"><span class="measure">{{PERC_NOX}}</span> NO<sub>x</sub> emissions</p>
+					    <p><strong>NO<sub>x</sub></strong> emissions for the new shipping lane are approximately 
+					    <strong>{{NEW_NOX}} tons</strong>, {{#noxEmissionsIncreased}}up{{/noxEmissionsIncreased}}{{^noxEmissionsIncreased}}down
+					    {{/noxEmissionsIncreased}} from the previous emissions of <strong>{{ORIG_NOX}} tons</strong>.</p>
+					</div>
+				{{/NO_NOX_CHANGE}}
+				{{#NO_PM10_CHANGE}}
+				 
+				    <div class="no_emissions_change">
+				    	<strong>No change</strong> in </span> PM<sub>10</sub> emissions of approximately <strong>{{NEW_PM10}} tons</strong>.
+					</div>
+					
+				{{/NO_PM10_CHANGE}}
+				{{^NO_PM10_CHANGE}}
+					<div class="{{PM10_CHANGE_CLASS}}">
+					    <p class="summary_emissions"><span class="measure">{{PERC_PM10}}</span> PM<sub>10</sub> emissions</p>
+					    <p><strong>PM<sub>10</sub></strong> emissions for the new shipping lane are approximately 
+					    <strong>{{NEW_PM10}} tons</strong>, {{#pmEmissionsIncreased}}up{{/pmEmissionsIncreased}}{{^pmEmissionsIncreased}}down
+				    	{{/pmEmissionsIncreased}} from the previous emissions of <strong>{{ORIG_PM10}} tons</strong>.</p>
+			    	</div>
+		    	{{/NO_PM10_CHANGE}}
 	    	</div>
 	    {{/emissionsReductions}}
-	  <p><i>Note: Emissions numbers are based on averages and should only be used for comparative purposes. Estimates assume a vessel speed of 16 knots.</i></p>
+	  <p><i>Note: Emissions numbers are based on averages and should only be used for comparative purposes.</i></p>
 
   
 </div>
