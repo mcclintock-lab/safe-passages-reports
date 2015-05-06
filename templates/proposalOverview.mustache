@@ -30,8 +30,10 @@
 </div>
 
 <div class="distance reportSection">
-  <h4>Shipping Lane Length</h4>
-	<div class="length_diff">
-		The shipping lane is <strong>{{length}}</strong> nautical miles long.
-	</div>
+  <h4>Shipping Lane Lengths</h4>
+  {{#lengths}}
+  	<p class="large">
+  		The proposed shipping lane <strong>'{{NAME}}'</strong> is <strong>{{NEW_LENGTH}}</strong> miles long.
+  	</p>
+  {{/lengths}}
 </div>

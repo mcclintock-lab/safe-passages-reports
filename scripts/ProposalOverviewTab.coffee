@@ -23,35 +23,23 @@ class ProposalOverviewTab extends ReportTab
   events:
     "click a[rel=toggle-layer]" : '_handleReportLayerClick'
     "click a.moreResults":        'onMoreResultsClick'
-  dependencies: ['ShippingLaneReport','ZoneSize' ]
+  dependencies: ['ShippingLaneLengthForProposal','ZoneSize' ]
 
   render: () ->
     window.results = @results
     isCollection = @model.isCollection()
 
-    length = Math.round(@recordSet('ShippingLaneReport', 'NewLength').data.value,1)
+    lengths = @recordSet('ShippingLaneLengthForProposal', 'Lengths').toArray()
     zonesizes = @recordSet('ZoneSize', 'Size').toArray()
+    for l in lengths
+      l.NEW_LENGTH = parseFloat(l.NEW_LENGTH).toFixed(1)
 
     context =
-      length: length 
+      lengths: lengths
       zones: zonesizes
 
     @$el.html @template.render context, @partials
 
     @enableLayerTogglers(@$el)
-
-    # Shouldn't we give some feedback to the user if the layer isn't present in the layer tree?
-  _handleReportLayerClick: (e) ->
-    e.preventDefault()
-    url = $(e.target).attr('href')
-    node = window.app.projecthomepage.dataSidebar.layerTree.getNodeByUrl url
-    node?.makeVisible()
-    node?.makeAllVisibleBelow()
-    node?.updateMap()
-    false
-
-  onMoreResultsClick: (e) =>
-    e?.preventDefault?()
-    $(e.target).closest('.reportSection').removeClass 'collapsed'
 
 module.exports = ProposalOverviewTab
