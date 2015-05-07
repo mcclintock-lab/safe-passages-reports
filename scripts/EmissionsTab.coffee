@@ -42,6 +42,9 @@ class EmissionsTab extends ReportTab
     
     if Math.abs(orig_co2_emissions - new_co2_emissions) < 0.01
       co2EmissionsChangeClass = 'nochange'
+      noEmissionsChange = true
+    else
+      noEmissionsChange = false
     significantCO2EmissionsChange = Math.abs(orig_co2_emissions - new_co2_emissions) > 0.1
 
 
@@ -74,6 +77,7 @@ class EmissionsTab extends ReportTab
 
       significantCO2EmissionsChange: significantCO2EmissionsChange
 
+      noEmissionsChange: noEmissionsChange
       new_co2_emissions: new_co2_emissions.toFixed(2)
       orig_co2_emissions: orig_co2_emissions.toFixed(2)
 

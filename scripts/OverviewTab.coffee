@@ -29,7 +29,7 @@ class OverviewTab extends ReportTab
     window.results = @results
     isCollection = @model.isCollection()
     existingLength = 158.35
-    length = Math.round(@recordSet('ShippingLaneReport', 'NewLength').data.value,1)
+    length = parseFloat(@recordSet('ShippingLaneReport', 'NewLength').data.value)
     console.log("new length: ", length)
     #length = @model.get('geometry').features[0].attributes.Shape_Length / 5048
     percentChange = Math.abs(((existingLength - length) / length) * 100)
@@ -38,7 +38,12 @@ class OverviewTab extends ReportTab
     lengthChangeClass = if lengthIncreased then 'positive' else 'negative'
     if Math.abs(existingLength - length) < 0.01
       lengthChangeClass = 'nochange'
+      noLengthChange = true
+    else
+      noLengthChange = false
+      console.log("length diff: ",Math.abs(existingLength - length))
 
+    length = length.toFixed(2)
     rigs = @recordSet('ShippingLaneReport', 'RigsNear')
     rigIntersections = 0
     for rig in rigs.toArray()
@@ -53,6 +58,7 @@ class OverviewTab extends ReportTab
       lengthChangeClass: lengthChangeClass
       lengthIncreased:lengthIncreased
       lengthChange:lengthChange
+      noLengthChange: noLengthChange
       percentChange: Math.round(percentChange)
 
     @$el.html @template.render context, @partials

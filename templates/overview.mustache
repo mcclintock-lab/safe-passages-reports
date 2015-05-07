@@ -1,10 +1,17 @@
 <div class="distance reportSection {{lengthChangeClass}}">
   <h4>Length</h4>
+  {{#noLengthChange}}
+    <div class="no_change">
+      <strong>No significant change</strong> in shipping lane length (of 158.35 miles).
+    </div>
+  {{/noLengthChange}}
+  {{^noLengthChange}}
   	<p class="lane_length"><span class="measure">{{percentChange}}</span>
-	<div class="length_diff">
-		The new shipping lane is <strong>{{length}}</strong> nautical miles, <strong>{{lengthChange}}</strong> nautical miles
-		{{#lengthIncreased}}longer{{/lengthIncreased}}{{^lengthIncreased}}shorter{{/lengthIncreased}} than the original shipping lane.
-	</div>
+  	<div class="length_diff">
+  		The new shipping lane is <strong>{{length}}</strong> nautical miles, <strong>{{lengthChange}}</strong> nautical miles
+  		{{#lengthIncreased}}longer{{/lengthIncreased}}{{^lengthIncreased}}shorter{{/lengthIncreased}} than the original shipping lane.
+  	</div>
+  {{/noLengthChange}}
 </div>
 
 {{#intersectsRig}}

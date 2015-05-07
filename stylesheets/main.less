@@ -2,25 +2,6 @@
 
 .whales, .emissions, .overview{
 
-  .costs > div {
-    float:left;
-    padding:10px;
-  }
-
-  .costs > div:nth-child(3) {
-    padding-left:0;
-  }
-
-  .costs > div:last-child {
-    padding-right:0;
-  }
-
-  .costs {
-    span {
-      display:block;
-    }
-  }
-
   .distance {
     span.change {
       &:before {
@@ -60,22 +41,9 @@
     }
   }
 
-  .fuel .measure:after {
-    content: ' ton increase';
-  }
-
-  .cost .measure:after {
-    content: ' increase';
-  }
-
 
   .negative {
-    .cost .measure:after {
-      content: ' decrease';
-    }    
-    .fuel .measure:after {
-      content: ' ton decrease';
-    }
+
     .emissions .measure:after {
       content: 'decrease in tons CO2'
     }
@@ -161,16 +129,14 @@
     color:#023e0f;
   }
 
-  .negative p.summary .measure:after {
-    content: '% decrease in costs';
-  }
-
   .negative p.summary_emissions .measure:after {
     content: '% decrease in'
   }
+
   .negative p.lane_length .measure:after {
     content: '% decrease in lane length'
   }
+
   .negative p.summary .measure:before {
     font-family:'IconicStroke';
     content: '↓ ';
@@ -198,6 +164,7 @@
     position:relative;
     top:-1px;
   }
+
   .negative p.lane_length .measure:before {
     font-family:'IconicStroke';
     content: '↓ ';
@@ -211,7 +178,9 @@
     position:relative;
     top:-1px;
   }
-
+  .positive p.summary_emissions .measure:after {
+    content: '% increase in'
+  }
   .sightings {
     margin-left:0px;
     // padding-left:10px;
@@ -424,12 +393,11 @@
   display:inline-block;
   font-weight:bold;
 }
-.no_emissions_change{
+.no_change{
   color:gray;
   font-weight:normal;
   border:none;
   font-size:14px;
   margin-top:3px;
   margin-bottom:3px;
-
 }

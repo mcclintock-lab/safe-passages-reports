@@ -23,6 +23,12 @@
 -->
 <div class="emissions reportSection {{co2EmissionsChangeClass}}">
   <h4>Emissions</h4>
+  {{#noEmissionsChange}}
+          <div class="no_emissions_change">
+              <strong>No significant change</strong> in emissions.
+          </div>
+  {{/noEmissionsChange}}
+  {{^noEmissionsChange}}
     <p class="summary_emissions"><span class="measure">{{co2EmissionsPercentChange}}</span>  emissions</p>
     <p><strong>CO<sub>2</sub></strong> emissions for the new shipping lane are approximately 
     <strong>{{new_co2_emissions}} tons</strong>, {{#co2EmissionsIncreased}}up{{/co2EmissionsIncreased}}{{^co2EmissionsIncreased}}down
@@ -36,6 +42,7 @@
     <strong>{{new_pm_emissions}} tons</strong>, {{#pmEmissionsIncreased}}up{{/pmEmissionsIncreased}}{{^pmEmissionsIncreased}}down
     {{/pmEmissionsIncreased}} from the previous emissions of <strong>{{orig_pm_emissions}} tons</strong>.</p>
 
+  {{/noEmissionsChange}}
   <p><i>Note: Emissions numbers are based on averages and should only be used for comparative purposes. Estimates assume a vessel speed of 16 knots.</i></p>
 </div>
 

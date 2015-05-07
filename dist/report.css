@@ -362,27 +362,6 @@
 .reportView .reportSection.tableContainer p {
   padding: 10px;
 }
-.whales .costs > div,
-.emissions .costs > div,
-.overview .costs > div {
-  float: left;
-  padding: 10px;
-}
-.whales .costs > div:nth-child(3),
-.emissions .costs > div:nth-child(3),
-.overview .costs > div:nth-child(3) {
-  padding-left: 0;
-}
-.whales .costs > div:last-child,
-.emissions .costs > div:last-child,
-.overview .costs > div:last-child {
-  padding-right: 0;
-}
-.whales .costs span,
-.emissions .costs span,
-.overview .costs span {
-  display: block;
-}
 .whales .distance span.change:before,
 .emissions .distance span.change:before,
 .overview .distance span.change:before {
@@ -419,26 +398,6 @@
 .emissions .distance .measure:after,
 .overview .distance .measure:after {
   content: ' nautical mile';
-}
-.whales .fuel .measure:after,
-.emissions .fuel .measure:after,
-.overview .fuel .measure:after {
-  content: ' ton increase';
-}
-.whales .cost .measure:after,
-.emissions .cost .measure:after,
-.overview .cost .measure:after {
-  content: ' increase';
-}
-.whales .negative .cost .measure:after,
-.emissions .negative .cost .measure:after,
-.overview .negative .cost .measure:after {
-  content: ' decrease';
-}
-.whales .negative .fuel .measure:after,
-.emissions .negative .fuel .measure:after,
-.overview .negative .fuel .measure:after {
-  content: ' ton decrease';
 }
 .whales .negative .emissions .measure:after,
 .emissions .negative .emissions .measure:after,
@@ -538,11 +497,6 @@
 .overview .negative p.lane_length .measure {
   color: #023e0f;
 }
-.whales .negative p.summary .measure:after,
-.emissions .negative p.summary .measure:after,
-.overview .negative p.summary .measure:after {
-  content: '% decrease in costs';
-}
 .whales .negative p.summary_emissions .measure:after,
 .emissions .negative p.summary_emissions .measure:after,
 .overview .negative p.summary_emissions .measure:after {
@@ -600,6 +554,11 @@
   content: '↑ ';
   position: relative;
   top: -1px;
+}
+.whales .positive p.summary_emissions .measure:after,
+.emissions .positive p.summary_emissions .measure:after,
+.overview .positive p.summary_emissions .measure:after {
+  content: '% increase in';
 }
 .whales .sightings,
 .emissions .sightings,
@@ -823,7 +782,7 @@
   display: inline-block;
   font-weight: bold;
 }
-.no_emissions_change {
+.no_change {
   color: gray;
   font-weight: normal;
   border: none;
