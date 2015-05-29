@@ -9,3 +9,25 @@
   <a class="moreResults" href="#">more results</a>
   <a href="#" style="float:right;" data-toggle-node="5541a9abcdac4caa025a3ba8">show effort layer</a>
 </div>
+
+<div class="reportSection sightings">
+  <h4>Sensitive Whale Habitat</h4>
+  <p>Square miles of sensitive whale habitat within this footprint, as well as the total percentage of the sensitive whale 
+    habitat within the study area.</p>
+  <ul class="sightings">
+    {{#sensitiveWhales}}
+      <li class="Blue">Blue whales <span class="sci">Balaenoptera musculus</span>
+        <span class="area">{{BLUE_SQM}} sq. mi.</span>
+        <span class="perc">{{BLUE_PERC}}%</span>
+      </li>
+      <li class="Gray">Gray whales <span class="sci">Eschrichtius robustus</span>
+        <span class="area">{{GRAY_SQM}} sq. mi.</span>
+        <span class="perc">{{GRAY_PERC}}%</span>
+      </li>
+       <li class="Humpback">Humpback whales <span class="sci">Megaptera novaeangliae</span>
+        <span class="area">{{HUMP_SQM}} sq. mi.</span>
+        <span class="perc">{{HUMP_PERC}}%</span>
+      </li>  
+    {{/sensitiveWhales}}
+  </ul>
+</div>

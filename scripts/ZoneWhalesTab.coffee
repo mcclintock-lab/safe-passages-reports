@@ -23,13 +23,14 @@ class ZoneWhalesTab extends ReportTab
   events:
     "click a[rel=toggle-layer]" : '_handleReportLayerClick'
     "click a.moreResults":        'onMoreResultsClick'
-  dependencies: ['WhaleOverlapTool']
+  dependencies: ['WhaleOverlapTool', 'SensitiveWhaleOverlap']
 
   render: () ->
     window.results = @results
 
     whaleSightings = @recordSet('WhaleOverlapTool', 'WhaleCount').toArray()
-
+    sensitiveWhales = @recordSet('SensitiveWhaleOverlap', 'SensitiveWhale').toArray()
+    
     sightings = {}
     for feature in whaleSightings
       species = feature.Species
@@ -48,10 +49,13 @@ class ZoneWhalesTab extends ReportTab
         record.percentChange = 0
         record.changeClass = 'nochange'
 
+
+
     context =
       sketchClass: @app.sketchClasses.get(@model.get 'sketchclass').forTemplate()
       sketch: @model.forTemplate()
       whaleSightings: sightingsData
+      sensitiveWhales: sensitiveWhales
 
     @$el.html @template.render context, @partials
     @enableLayerTogglers(@$el)

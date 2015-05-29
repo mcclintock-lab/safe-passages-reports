@@ -23,12 +23,13 @@ class WhalesTab extends ReportTab
   events:
     "click a[rel=toggle-layer]" : '_handleReportLayerClick'
     "click a.moreResults":        'onMoreResultsClick'
-  dependencies: ['ShippingLaneReport']
+  dependencies: ['ShippingLaneReport', 'SensitiveWhaleOverlap']
 
   render: () ->
     window.results = @results
     isobath = @recordSet('ShippingLaneReport', 'Habitats')
     whaleSightings = @recordSet('ShippingLaneReport', 'WhaleCount').toArray()
+    sensitiveWhales = @recordSet('SensitiveWhaleOverlap', 'SensitiveWhale').toArray()
     length = Math.round(@recordSet('ShippingLaneReport', 'NewLength').data.value,1)
     sightings = {}
     for feature in whaleSightings
@@ -37,7 +38,7 @@ class WhalesTab extends ReportTab
         sightings[feature.Species] = 0
       sightings[species] = sightings[species] + feature.FREQUENCY
     sightingsData = _.map sightingsTemplate, (s) -> _.clone(s)
-    console.log(".......sightings: ", sightingsData)
+
     for record in sightingsData
       record.count = sightings[record.id] if sightings[record.id]
       record.diff = record.count - record.unchangedCount
@@ -70,7 +71,7 @@ class WhalesTab extends ReportTab
       intersectedIsobathM: addCommas(Math.round(intersectedIsobathM))
       isobathPercentChange: isobathPercentChange
       isobathChangeClass: isobathChangeClass
-
+      sensitiveWhales: sensitiveWhales
 
     @$el.html @template.render context, @partials
 
