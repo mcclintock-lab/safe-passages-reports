@@ -1,6 +1,6 @@
 
 <div class="reportSection sightings {{lengthChangeClass}} collapsed">
-  <h4>Whale Sightings</h4>
+  <h4>Channel Islands Naturalist Corp Observations</h4>
   <p>Number of whale sightings within this footprint compared to existing shipping lanes. Sightings are recorded by whalewatching vessels.</p>
   <ul class="sightings">
   {{#whaleSightings}}
@@ -17,16 +17,13 @@
   <ul class="sightings">
     {{#sensitiveWhales}}
       <li class="Blue">Blue whales <span class="sci">Balaenoptera musculus</span>
-        <span class="area">{{BLUE_SQM}} sq. mi.</span>
-        <span class="perc">{{BLUE_PERC}}%</span>
+        <span class="area">{{BLUE_SQM}} of {{BLUE_TOT}} sq. mi. <strong>({{BLUE_PERC}})</strong></span>
       </li>
       <li class="Gray">Gray whales <span class="sci">Eschrichtius robustus</span>
-        <span class="area">{{GRAY_SQM}} sq. mi.</span>
-        <span class="perc">{{GRAY_PERC}}%</span>
+        <span class="area">{{GRAY_SQM}} of {{GRAY_TOT}} sq. mi. <strong>({{GRAY_PERC}}%)</strong></span>
       </li>
        <li class="Humpback">Humpback whales <span class="sci">Megaptera novaeangliae</span>
-        <span class="area">{{HUMP_SQM}} sq. mi.</span>
-        <span class="perc">{{HUMP_PERC}}%</span>
+        <span class="area">{{HUMP_SQM}} of {{HUMP_TOT}} sq. mi. <strong>({{HUMP_PERC}}%)</strong></span>
       </li>  
     {{/sensitiveWhales}}
   </ul>
