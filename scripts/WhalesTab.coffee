@@ -30,6 +30,15 @@ class WhalesTab extends ReportTab
     isobath = @recordSet('ShippingLaneReport', 'Habitats')
     whaleSightings = @recordSet('ShippingLaneReport', 'WhaleCount').toArray()
     sensitiveWhales = @recordSet('SensitiveWhaleOverlap', 'SensitiveWhale').toArray()
+
+    for sw in sensitiveWhales
+      sw.BLUE_TOT = 2809
+      sw.BLUE_SQM = Math.round(sw.BLUE_SQM)
+      sw.GRAY_TOT = 50667
+      sw.GRAY_SQM = Math.round(sw.GRAY_SQM)
+      sw.HUMP_TOT = 1267
+      sw.HUMP_SQM = Math.round(sw.HUMP_SQM)
+
     length = Math.round(@recordSet('ShippingLaneReport', 'NewLength').data.value,1)
     sightings = {}
     for feature in whaleSightings

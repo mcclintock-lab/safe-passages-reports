@@ -3,7 +3,9 @@
   <h4>Channel Islands Naturalist Corp Observations</h4>
   <ul class="sightings">
   {{#whaleSightings}}
-    <li class="{{id}}">{{name}} <span class="sci">{{scientificName}}</span><span class="count">{{count}}</span></li>
+    <li class="{{id}}">{{name}} <span class="sci">{{scientificName}}</span>
+      <span class="area">{{count}} of {{count_tot}} ({{count_perc}}%)</span>
+    </li>
   {{/whaleSightings}}
   </ul>
   <a class="moreResults" href="#">more results</a>
@@ -16,7 +18,7 @@
   <ul class="sightings">
     {{#sensitiveWhales}}
       <li class="Blue">Blue whales <span class="sci">Balaenoptera musculus</span>
-        <span class="area">{{BLUE_SQM}} of {{BLUE_TOT}} sq. mi. <strong>({{BLUE_PERC}})</strong></span>
+        <span class="area">{{BLUE_SQM}} of {{BLUE_TOT}} sq. mi. <strong>({{BLUE_PERC}}%)</strong></span>
       </li>
       <li class="Gray">Gray whales <span class="sci">Eschrichtius robustus</span>
         <span class="area">{{GRAY_SQM}} of {{GRAY_TOT}} sq. mi. <strong>({{GRAY_PERC}}%)</strong></span>

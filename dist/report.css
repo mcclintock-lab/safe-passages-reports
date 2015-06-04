@@ -611,9 +611,9 @@
 .overview .sightings li span.area {
   top: 15px;
   position: absolute;
-  right: 95px;
   color: #535050;
-  margin-right: 6px;
+  left: 210px;
+  width: 230px;
 }
 .whales .sightings li span.perc,
 .emissions .sightings li span.perc,

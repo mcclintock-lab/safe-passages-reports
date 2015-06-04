@@ -27,19 +27,34 @@ class ZoneWhalesTab extends ReportTab
 
   render: () ->
     window.results = @results
-
     whaleSightings = @recordSet('WhaleOverlapTool', 'WhaleCount').toArray()
     sensitiveWhales = @recordSet('SensitiveWhaleOverlap', 'SensitiveWhale').toArray()
     
+    for sw in sensitiveWhales
+      sw.BLUE_TOT = 2809
+      sw.BLUE_SQM = Math.round(sw.BLUE_SQM)
+      sw.GRAY_TOT = 50667
+      sw.GRAY_SQM = Math.round(sw.GRAY_SQM)
+      sw.HUMP_TOT = 1267
+      sw.HUMP_SQM = Math.round(sw.HUMP_SQM)
+
     sightings = {}
+    sightings_tot = {}
+    sightings_perc = {}
+
     for feature in whaleSightings
       species = feature.Species
       unless species in _.keys(sightings)
         sightings[feature.Species] = 0
       sightings[species] = sightings[species] + parseInt(feature.FREQUENCY)
-    sightingsData = _.map sightingsTemplate, (s) -> _.clone(s)
+      sightings_tot[species] = feature.count_tot
+      sightings_perc[species] = feature.count_perc
 
+    sightingsData = _.map sightingsTemplate, (s) -> _.clone(s)
+    countData = []
     for record in sightingsData
+      record.count_tot = sightings_tot[record.id]
+      record.count_perc = sightings_perc[record.id]
       record.count = sightings[record.id] if sightings[record.id]
       record.diff = record.count - record.unchangedCount
       record.percentChange =  Math.round((Math.abs(record.diff)/record.unchangedCount) * 100)
@@ -48,13 +63,13 @@ class ZoneWhalesTab extends ReportTab
       if _.isNaN(record.percentChange)
         record.percentChange = 0
         record.changeClass = 'nochange'
-
-
+      if record.count != 0
+        countData.push(record)
 
     context =
       sketchClass: @app.sketchClasses.get(@model.get 'sketchclass').forTemplate()
       sketch: @model.forTemplate()
-      whaleSightings: sightingsData
+      whaleSightings: countData
       sensitiveWhales: sensitiveWhales
 
     @$el.html @template.render context, @partials
