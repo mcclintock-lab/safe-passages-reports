@@ -5,6 +5,7 @@ module.exports = [
     scientificName: 'Balaenoptera musculus'
     unchangedCount: 6094
     count: 0
+    count_tot: 6094
   },
   {
     id: 'Humpback'
@@ -12,6 +13,7 @@ module.exports = [
     scientificName: 'Megaptera novaeangliae'
     unchangedCount: 8554
     count: 0
+    count_tot: 8554
   },
   {
     id: 'Gray'
@@ -19,6 +21,7 @@ module.exports = [
     scientificName: 'Eschrichtius robustus'
     unchangedCount: 10339
     count: 0
+    count_tot: 10339
   },
   {
     id: 'Fin'
@@ -26,6 +29,7 @@ module.exports = [
     scientificName: 'Balaenoptera physalus'
     unchangedCount: 121
     count: 0
+    count_tot: 121
   },
   {
     id: 'Minke'
@@ -33,6 +37,7 @@ module.exports = [
     scientificName: 'Balaenoptera acutorostrata'
     unchangedCount: 385
     count: 0
+    count_tot: 385
   },
   {
     id: 'Pilot Whale'
@@ -40,6 +45,8 @@ module.exports = [
     scientificName: 'Globicephala macrorhynchus'
     unchangedCount: 3
     count: 0
+    count_tot: 3
   }
 ]
+
 

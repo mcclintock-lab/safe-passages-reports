@@ -51,6 +51,7 @@ class WhalesTab extends ReportTab
     for record in sightingsData
       record.count = sightings[record.id] if sightings[record.id]
       record.diff = record.count - record.unchangedCount
+      record.count_perc = Number((record.count/record.count_tot)*100).toFixed(1)
       record.percentChange =  Math.round((Math.abs(record.diff)/record.unchangedCount) * 100)
       if record.percentChange is Infinity then record.percentChange = '>100';
       record.changeClass = if record.diff > 0 then 'positive' else 'negative'
