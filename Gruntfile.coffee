@@ -48,9 +48,9 @@ module.exports = (grunt) ->
             .replace('node_modules/seasketch-reporting-api/templates/', '')
             .replace('.mustache', '')
     less:
-      main:
+      report:
         files:
-          'dist/report.css': 'stylesheets/main.less'
+          'dist/report.css': 'stylesheets/report.less'
     browserify:
       shipping:
         src: 'scripts/shipping.coffee'

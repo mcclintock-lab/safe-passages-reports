@@ -16,7 +16,7 @@ module.exports = [
     count_tot: 8554
   },
   {
-    id: 'Gray'
+    id: 'Gray Whale'
     name: 'Gray Whale'
     scientificName: 'Eschrichtius robustus'
     unchangedCount: 10339

@@ -736,17 +736,6 @@
   position: relative;
   top: -1px;
 }
-.whales li.Gray:after,
-.emissions li.Gray:after,
-.overview li.Gray:after {
-  content: 'Endangered';
-  font-size: 10px;
-  padding: 1px 4px;
-  background: rgba(255, 0, 0, 0.7);
-  color: white;
-  position: relative;
-  top: -1px;
-}
 .whales li.Humpback:after,
 .emissions li.Humpback:after,
 .overview li.Humpback:after {
