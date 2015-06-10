@@ -23,12 +23,13 @@ class WhalesTab extends ReportTab
   events:
     "click a[rel=toggle-layer]" : '_handleReportLayerClick'
     "click a.moreResults":        'onMoreResultsClick'
-  dependencies: ['ShippingLaneReport', 'SensitiveWhaleOverlap']
+  dependencies: ['ShippingLaneReport', 'SensitiveWhaleOverlap', 'WhaleOverlapTool']
 
   render: () ->
     window.results = @results
     isobath = @recordSet('ShippingLaneReport', 'Habitats')
-    whaleSightings = @recordSet('ShippingLaneReport', 'WhaleCount').toArray()
+    #whaleSightings = @recordSet('ShippingLaneReport', 'WhaleCount').toArray()
+    whaleSightings = @recordSet('WhaleOverlapTool', 'WhaleCount').toArray()
     sensitiveWhales = @recordSet('SensitiveWhaleOverlap', 'SensitiveWhale').toArray()
 
     for sw in sensitiveWhales
@@ -39,26 +40,24 @@ class WhalesTab extends ReportTab
       sw.HUMP_TOT = 1267
       sw.HUMP_SQM = Math.round(sw.HUMP_SQM)
 
-    length = Math.round(@recordSet('ShippingLaneReport', 'NewLength').data.value,1)
     sightings = {}
     for feature in whaleSightings
       species = feature.Species
       unless species in _.keys(sightings)
         sightings[feature.Species] = 0
-      sightings[species] = sightings[species] + feature.FREQUENCY
+      sightings[species] = sightings[species] + parseInt(feature.FREQUENCY)
     sightingsData = _.map sightingsTemplate, (s) -> _.clone(s)
-
     for record in sightingsData
       record.count = sightings[record.id] if sightings[record.id]
-      record.diff = record.count - record.unchangedCount
       record.count_perc = Number((record.count/record.count_tot)*100).toFixed(1)
+      record.diff = record.count - record.unchangedCount
       record.percentChange =  Math.round((Math.abs(record.diff)/record.unchangedCount) * 100)
       if record.percentChange is Infinity then record.percentChange = '>100';
       record.changeClass = if record.diff > 0 then 'positive' else 'negative'
       if _.isNaN(record.percentChange)
         record.percentChange = 0
         record.changeClass = 'nochange'
-
+    '''
     area = 0
     for feature in isobath.toArray()
       area = area + feature.Shape_Area
@@ -71,23 +70,20 @@ class WhalesTab extends ReportTab
     isobathPercentChange = Math.round((Math.abs(isobathChange) / existingIsobathIntersection) * 100)
     existingLength = 158
     sigDistanceChange = Math.abs(existingLength - length) > 0.1
-
+    intersectedIsobathM: addCommas(Math.round(intersectedIsobathM))
+    isobathPercentChange: isobathPercentChange
+    isobathChangeClass: isobathChangeClass
+    '''
     context =
-      significantDistanceChange: sigDistanceChange
       sketchClass: @app.sketchClasses.get(@model.get 'sketchclass').forTemplate()
       sketch: @model.forTemplate()
 
       whaleSightings: sightingsData
-      intersectedIsobathM: addCommas(Math.round(intersectedIsobathM))
-      isobathPercentChange: isobathPercentChange
-      isobathChangeClass: isobathChangeClass
       sensitiveWhales: sensitiveWhales
 
     @$el.html @template.render context, @partials
-
     @enableLayerTogglers(@$el)
 
-    # Shouldn't we give some feedback to the user if the layer isn't present in the layer tree?
   _handleReportLayerClick: (e) ->
     e.preventDefault()
     url = $(e.target).attr('href')

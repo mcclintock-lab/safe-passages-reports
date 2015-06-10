@@ -39,13 +39,11 @@ class ZoneWhalesTab extends ReportTab
       sw.HUMP_SQM = Math.round(sw.HUMP_SQM)
 
     sightings = {}
-
     for feature in whaleSightings
       species = feature.Species
       unless species in _.keys(sightings)
         sightings[feature.Species] = 0
       sightings[species] = sightings[species] + parseInt(feature.FREQUENCY)
-
     sightingsData = _.map sightingsTemplate, (s) -> _.clone(s)
     for record in sightingsData
       record.count = sightings[record.id] if sightings[record.id]
