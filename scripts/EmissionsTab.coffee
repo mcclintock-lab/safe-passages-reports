@@ -78,8 +78,8 @@ class EmissionsTab extends ReportTab
       significantCO2EmissionsChange: significantCO2EmissionsChange
 
       noEmissionsChange: noEmissionsChange
-      new_co2_emissions: new_co2_emissions.toFixed(2)
-      orig_co2_emissions: orig_co2_emissions.toFixed(2)
+      new_co2_emissions: new_co2_emissions.toFixed(0)
+      orig_co2_emissions: orig_co2_emissions.toFixed(0)
 
       co2EmissionsIncreased: co2EmissionsIncreased
       co2EmissionsChangeClass: co2EmissionsChangeClass
@@ -87,8 +87,8 @@ class EmissionsTab extends ReportTab
 
       significantNOXEmissionsChange: significantNOXEmissionsChange
 
-      new_nox_emissions: new_nox_emissions.toFixed(3)
-      orig_nox_emissions: orig_nox_emissions.toFixed(3)
+      new_nox_emissions: new_nox_emissions.toFixed(0)
+      orig_nox_emissions: orig_nox_emissions.toFixed(0)
 
       noxEmissionsIncreased: noxEmissionsIncreased
       noxEmissionsChangeClass: noxEmissionsChangeClass
@@ -96,15 +96,14 @@ class EmissionsTab extends ReportTab
 
       significantPMEmissionsChange: significantPMEmissionsChange
 
-      new_pm_emissions: new_pm_emissions.toFixed(3)
-      orig_pm_emissions: orig_pm_emissions.toFixed(3)
+      new_pm_emissions: new_pm_emissions.toFixed(0)
+      orig_pm_emissions: orig_pm_emissions.toFixed(0)
 
       pmEmissionsIncreased: pmEmissionsIncreased
       pmEmissionsChangeClass: pmEmissionsChangeClass
       pmEmissionsPercentChange: Math.round(pmEmissionsPercentChange)
 
     @$el.html @template.render context, @partials
-
     @enableLayerTogglers(@$el)
 
     # Shouldn't we give some feedback to the user if the layer isn't present in the layer tree?

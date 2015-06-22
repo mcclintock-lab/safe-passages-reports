@@ -59,16 +59,16 @@ class ProposalEmissionsTab extends ReportTab
 
       if type == "ORIG"
         console.log("its orig", er.CO2)
-        currRed.ORIG_CO2 = er.CO2
-        currRed.ORIG_NOX = er.NOX
-        currRed.ORIG_SOX = er.SOX
-        currRed.ORIG_PM10 = er.PM10
+        currRed.ORIG_CO2 = Math.round(er.CO2)
+        currRed.ORIG_NOX = Math.round(er.NOX)
+        currRed.ORIG_SOX = Math.round(er.SOX)
+        currRed.ORIG_PM10 = Math.round(er.PM10)
       else if type == "NEW"
         console.log('its new:', er.CO2)
-        currRed.NEW_CO2 = er.CO2
-        currRed.NEW_NOX = er.NOX
-        currRed.NEW_SOX = er.SOX
-        currRed.NEW_PM10 = er.PM10
+        currRed.NEW_CO2 = Math.round(er.CO2)
+        currRed.NEW_NOX = Math.round(er.NOX)
+        currRed.NEW_SOX = Math.round(er.SOX)
+        currRed.NEW_PM10 = Math.round(er.PM10)
       else
         currRed.PERC_CO2 = parseFloat(er.CO2)
         console.log("perc co2: ", er.CO2)
