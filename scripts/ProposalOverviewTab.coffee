@@ -4,7 +4,7 @@ _partials = require '../node_modules/seasketch-reporting-api/templates/templates
 partials = []
 for key, val of _partials
   partials[key.replace('node_modules/seasketch-reporting-api/', '')] = val
-sightingsTemplate = require './sightingsTemplate.coffee'
+#sightingsTemplate = require './sightingsTemplate.coffee'
 
 addCommas = (nStr) ->
   nStr += ''

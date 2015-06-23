@@ -4,11 +4,14 @@ _partials = require '../node_modules/seasketch-reporting-api/templates/templates
 partials = []
 for key, val of _partials
   partials[key.replace('node_modules/seasketch-reporting-api/', '')] = val
-sightingsTemplate = require './sightingsTemplate.coffee'
+sightingsTemplate = require './newSightingsTemplate.coffee'
+
+
 ids = require './ids.coffee'
 
 for key, value of ids
   window[key] = value
+
 addCommas = (nStr) ->
   nStr += ''
   x = nStr.split('.')
@@ -26,50 +29,41 @@ class WhalesTab extends ReportTab
   events:
     "click a[rel=toggle-layer]" : '_handleReportLayerClick'
     "click a.moreResults":        'onMoreResultsClick'
-  dependencies: ['ShippingLaneReport', 'SensitiveWhaleOverlap', 'WhaleOverlapTool']
+  dependencies: ['SensitiveWhaleOverlap', 'WhaleOverlapTool']
 
   render: () ->
+
     window.results = @results
-    isobath = @recordSet('ShippingLaneReport', 'Habitats')
+    #isobath = @recordSet('ShippingLaneReport', 'Habitats')
     
-    
+    console.log("sketch class name: ", @sketchClass.id)
     sensitiveWhales = @recordSet('SensitiveWhaleOverlap', 'SensitiveWhale').toArray()
     @loadSensitiveWhaleData sensitiveWhales
-
     whaleSightings = @recordSet('WhaleOverlapTool', 'WhaleCount').toArray()
-    mgmt_area_whales = _.filter whaleSightings, (row) -> row.SC_ID == MGMT_AREA_ID 
-    hasManagementAreas = mgmt_area_whales?.length > 0
-    shipping_lane_whales = _.filter whaleSightings, (row) -> row.SC_ID == SHIPPING_LANE_ID 
-    hasShippingLanes = shipping_lane_whales?.length > 0
 
-    other_whales = _.filter whaleSightings, (row) -> (row.SC_ID != SHIPPING_LANE_ID && row.SC_ID != MGMT_AREA_ID)
-    hasOtherWhales = other_whales?.length > 0
-    '''
-    mgmt_sightings = {}
-    for feature in mgmt_area_whales
-      species = feature.Species
-      unless species in _.keys(mgmt_sightings)
-        mgmt_sightings[feature.Species] = 0
-      mgmt_sightings[species] = mgmt_sightings[species] + parseInt(feature.FREQUENCY)
-    
-    shipping_sightings = {}
-    for feature in shipping_lane_whales
-      species = feature.Species
-      unless species in _.keys(mgmt_sightings)
-        shipping_sightings[feature.Species] = 0
-      shipping_sightings[species] = shipping_sightings[species] + parseInt(feature.FREQUENCY)
-      
-    other_sightings = {}
-    for feature in other_whales
-      species = feature.Species
-      unless species in _.keys(other_sightings)
-        other_sightings[feature.Species] = 0
-      other_sightings[species] = other_sightings[species] + parseInt(feature.FREQUENCY)
-    '''
-    @loadSightingsData mgmt_area_whales
-    @loadSightingsData shipping_lane_whales
-    @loadSightingsData other_whales
 
+    whales_in_mgmt_areas = _.filter whaleSightings, (row) -> row.SC_ID == MGMT_AREA_ID
+    console.log('wmgt:', whales_in_mgmt_areas)       
+
+    hasManagementAreas = whales_in_mgmt_areas?.length > 0
+    mgmt_area_whales = _.map sightingsTemplate, (s) -> _.clone(s)
+    @loadSightingsData mgmt_area_whales, whales_in_mgmt_areas
+
+    whales_in_shipping_lanes = _.filter whaleSightings, (row) -> (row.SC_ID == SHIPPING_LANE_ID)
+    hasShippingLanes = whales_in_shipping_lanes?.length > 0
+    shipping_lane_whales = _.map sightingsTemplate, (s) -> _.clone(s)
+    @loadSightingsData shipping_lane_whales, whales_in_shipping_lanes
+
+    whales_in_other_areas = _.filter whaleSightings, (row) -> (row.SC_ID != SHIPPING_LANE_ID && row.SC_ID != MGMT_AREA_ID)
+    console.log("other whales: ", whales_in_other_areas)
+    hasOtherWhales= whales_in_other_areas?.length > 0
+    other_whales = _.map sightingsTemplate, (s) -> _.clone(s)
+    @loadSightingsData other_whales, whales_in_other_areas
+
+
+    console.log("has shipping? ", hasShippingLanes)
+    console.log("has mgmt?", hasManagementAreas)
+    console.log("has Other?", hasOtherWhales)
     context =
       sketchClass: @app.sketchClasses.get(@model.get 'sketchclass').forTemplate()
       sketch: @model.forTemplate()
@@ -97,31 +91,27 @@ class WhalesTab extends ReportTab
   get_whale_name: (common_name) ->
     mapping = {'Blue':'Blue Whale', 'Humpback':'Humpback Whale','Gray':'Gray Whale','Fin':'Fin Whale','Minke':'Minke Whale','Pilot Whale':'Pilot Whale'}
     return mapping[common_name]
-  loadSightingsData: (data) ->
-     for record in data
-      console.log("sightings rec: ", record)
-      record.scientificName = @get_whale_species record.Species
-      record.name = @get_whale_name record.Species
 
-      if record.FEQUENCY == "N/A"
-        record.is_na = true
-      else
-        record.is_na = false
-        
-        '''
-        record.count = sightings[record.id] if sightings[record.id]
-        record.count_perc = Number((record.count/record.count_tot)*100).toFixed(1)
-        record.diff = record.count - record.unchangedCount
-        record.percentChange =  Math.round((Math.abs(record.diff)/record.unchangedCount) * 100)
-        if record.percentChange is Infinity then record.percentChange = '>100';
-        record.changeClass = if record.diff > 0 then 'positive' else 'negative'
-        if _.isNaN(record.percentChange)
-          record.percentChange = 0
-          record.changeClass = 'nochange'
-        '''
+  get_found_whale: (id, found_data) ->
+    for fd in found_data
+      if fd.Species == id
+        return fd
+    return null
+
+  loadSightingsData: (full_data, found_data) ->
+    for record in full_data
+      fd = @get_found_whale(record.id, found_data)
+      if fd != null
+        record.count_perc = fd.count_perc
+        record.count_tot = fd.count_tot
+
+        record.count = fd.FREQUENCY
+        record.is_na = (fd.FREQUENCY == "N/A")
+
+
+
+
   loadSensitiveWhaleData: (data) ->
-    man_area_id = "55230839b43a3ad42844d410"
-    shipping_lane = "54d2a8affa94e697759cbc79"
 
     for sw in data
       sc_id = sw.SC_ID

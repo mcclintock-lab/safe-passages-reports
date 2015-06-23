@@ -33,14 +33,13 @@
       {{#mgmt_area_whales}}
       <li class="{{id}}">{{name}} <span class="sci">{{scientificName}}</span>
         {{^is_na}}
-          <span class="area">{{FREQUENCY}} of {{count_tot}} ({{count_perc}}%)</span>
+          <span class="area">{{count}} of {{count_tot}} ({{count_perc}}%)</span>
         {{/is_na}}
         {{#is_na}}
           <span class="area">The management area is outside the whale observation area.</span>
         {{/is_na}}
       </li>
       {{/mgmt_area_whales}}
-    
     </ul>
     {{/hasManagementAreas}}
     {{#hasShippingLanes}}
@@ -49,7 +48,7 @@
       {{#shipping_lane_whales}}
         <li class="{{id}}">{{name}} <span class="sci">{{scientificName}}</span>
           {{^is_na}}
-            <span class="area">{{FREQUENCY}} of {{count_tot}} ({{count_perc}}%)</span>
+            <span class="area">{{count}} of {{count_tot}} ({{count_perc}}%)</span>
           {{/is_na}}
           {{#is_na}}
             <span class="area">The shipping lane is outside the whale observation area.</span>
@@ -59,14 +58,15 @@
       </ul>
     {{/hasShippingLanes}}
     {{#hasOtherWhales}}
+    <p><strong>In Other Sketch Types:</strong></p>
     <ul class="sightings">
       {{#otherWhaleSightings}}
       <li class="{{id}}">{{name}} <span class="sci">{{scientificName}}</span>
         {{^is_na}}
-          <span class="area">{{FREQUENCY}} of {{count_tot}} ({{count_perc}}%)</span>
+          <span class="area">{{count}} of {{count_tot}} ({{count_perc}}%)</span>
         {{/is_na}}
         {{#is_na}}
-          <span class="area">The management area is outside the whale observation area.</span>
+          <span class="area">The area is outside the whale observation area.</span>
         {{/is_na}}
       </li>
       {{/otherWhaleSightings}}
