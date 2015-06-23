@@ -6,8 +6,10 @@
     <p>
       Total number of sq. miles of area identified as biologically important for feeding or migrating for part of the year that overlap with the footprint of the sketched plan.
     </p>
+  {{#sensitiveWhales}}
+  <p><strong>In {{SC_NAME}}s:</strong></p>
   <ul class="sightings">
-    {{#sensitiveWhales}}
+    
       <!--
       <li class="Blue">Blue whales <span class="sci">Balaenoptera musculus</span>
         <span class="area">{{BLUE_SQM}} of {{BLUE_TOT}} sq. mi. <strong>({{BLUE_PERC}}%)</strong></span>
@@ -20,16 +22,17 @@
       </li>  
       -->
       <li class="Blue">Blue whales <span class="sci">Balaenoptera musculus</span>
-        <span class="area"><strong>{{BLUE_SQM}} sq. mi.</strong></span>
+        <span class="area"><strong>{{BLUE_SQM}}</strong></span>
       </li>
       <li class="Gray">Gray whales <span class="sci">Eschrichtius robustus</span>
         <span class="area"><strong>{{GRAY_SQM}}</strong></span>
       </li>
        <li class="Humpback">Humpback whales <span class="sci">Megaptera novaeangliae</span>
-        <span class="area"><strong>{{HUMP_SQM}} sq. mi.</strong></span>
+        <span class="area"><strong>{{HUMP_SQM}}</strong></span>
       </li>  
-    {{/sensitiveWhales}}
+    
   </ul>
+  {{/sensitiveWhales}}
 </div>
 
 <div class="reportSection sightings">
@@ -38,11 +41,11 @@
     Total number of observations recorded in the footprint of this sketched plan by the Channel Islands Naturalist Corp upon whale watching vessels.  View the effort layer to assess wether this is an appropriate data set to use to compare plans of interest.
   </p>
   <ul class="sightings">
-  {{#whaleSightings}}
-    <li class="{{id}}">{{name}} <span class="sci">{{scientificName}}</span>
-      <span class="area">{{count}} of {{count_tot}} ({{count_perc}}%)</span>
-    </li>
-  {{/whaleSightings}}
+    {{#whaleSightings}}
+      <li class="{{id}}">{{name}} <span class="sci">{{scientificName}}</span>
+        <span class="area">{{count}} of {{count_tot}} ({{count_perc}}%)</span>
+      </li>
+    {{/whaleSightings}}
   </ul>
   <a class="moreResults" href="#">more results</a>
   <a href="#" style="float:right;" data-toggle-node="5541a9abcdac4caa025a3ba8">show effort layer</a>

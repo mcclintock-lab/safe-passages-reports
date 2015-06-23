@@ -1,7 +1,7 @@
 ProposalOverviewTab = require './proposalOverviewTab.coffee'
 ProposalEmissionsTab = require './proposalEmissionsTab.coffee'
-ZoneWhalesTab = require './zoneWhalesTab.coffee'
+WhalesTab = require './whalesTab.coffee'
 window.app.registerReport (report) ->
-  report.tabs [ProposalOverviewTab, ZoneWhalesTab,ProposalEmissionsTab]
+  report.tabs [ProposalOverviewTab, WhalesTab,ProposalEmissionsTab]
   # path must be relative to dist/
   report.stylesheets ['./report.css']

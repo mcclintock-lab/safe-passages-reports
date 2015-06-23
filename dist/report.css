@@ -758,11 +758,6 @@
   position: relative;
   top: -1px;
 }
-.whales .collapsed .sightings li:nth-child(n+4),
-.emissions .collapsed .sightings li:nth-child(n+4),
-.overview .collapsed .sightings li:nth-child(n+4) {
-  display: none;
-}
 .whales .collapsed .moreResults,
 .emissions .collapsed .moreResults,
 .overview .collapsed .moreResults {
