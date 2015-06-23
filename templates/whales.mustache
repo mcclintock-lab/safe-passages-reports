@@ -36,12 +36,13 @@
           <span class="area">{{count}} of {{count_tot}} ({{count_perc}}%)</span>
         {{/is_na}}
         {{#is_na}}
-          <span class="area">The management area is outside the whale observation area.</span>
+          <span class="na_area">N/A</span>
         {{/is_na}}
       </li>
       {{/mgmt_area_whales}}
     </ul>
     {{/hasManagementAreas}}
+    
     {{#hasShippingLanes}}
       <p><strong>In Shipping Lanes:</strong></p>
       <ul class="sightings">
@@ -51,7 +52,7 @@
             <span class="area">{{count}} of {{count_tot}} ({{count_perc}}%)</span>
           {{/is_na}}
           {{#is_na}}
-            <span class="area">The shipping lane is outside the whale observation area.</span>
+            <span class="na_area">N/A</span>
           {{/is_na}}
         </li>
       {{/shipping_lane_whales}}
@@ -66,7 +67,7 @@
           <span class="area">{{count}} of {{count_tot}} ({{count_perc}}%)</span>
         {{/is_na}}
         {{#is_na}}
-          <span class="area">The area is outside the whale observation area.</span>
+          <span class="na_area">N/A</span>
         {{/is_na}}
       </li>
       {{/otherWhaleSightings}}

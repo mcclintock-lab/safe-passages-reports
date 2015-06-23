@@ -55,15 +55,12 @@ class WhalesTab extends ReportTab
     @loadSightingsData shipping_lane_whales, whales_in_shipping_lanes
 
     whales_in_other_areas = _.filter whaleSightings, (row) -> (row.SC_ID != SHIPPING_LANE_ID && row.SC_ID != MGMT_AREA_ID)
-    console.log("other whales: ", whales_in_other_areas)
+
     hasOtherWhales= whales_in_other_areas?.length > 0
     other_whales = _.map sightingsTemplate, (s) -> _.clone(s)
     @loadSightingsData other_whales, whales_in_other_areas
 
 
-    console.log("has shipping? ", hasShippingLanes)
-    console.log("has mgmt?", hasManagementAreas)
-    console.log("has Other?", hasOtherWhales)
     context =
       sketchClass: @app.sketchClasses.get(@model.get 'sketchclass').forTemplate()
       sketch: @model.forTemplate()
@@ -82,8 +79,6 @@ class WhalesTab extends ReportTab
     @enableLayerTogglers(@$el)
 
 
-
-
   get_whale_species: (common_name) ->
     mapping = {'Blue':'Balaenoptera musculus', 'Humpback':'Megaptera novaeangliae','Gray':'Eschrichtius robustus','Fin':'Balaenoptera physalus','Minke':'Balaenoptera acutorostrata','Pilot Whale':'Globicephala macrorhynchus'}
     return mapping[common_name]
@@ -98,21 +93,26 @@ class WhalesTab extends ReportTab
         return fd
     return null
 
+  is_na: (data) ->
+    for record in data
+      if record.FREQUENCY == "N/A"
+        return true
+    return false
+
   loadSightingsData: (full_data, found_data) ->
-    for record in full_data
-      fd = @get_found_whale(record.id, found_data)
-      if fd != null
-        record.count_perc = fd.count_perc
-        record.count_tot = fd.count_tot
+    if @is_na(found_data)
+      for record in full_data
+        record.is_na = "N/A"
+    else
+      for record in full_data
+        fd = @get_found_whale(record.id, found_data)
+        if fd != null
+          record.count_perc = fd.count_perc
+          record.count_tot = fd.count_tot
 
-        record.count = fd.FREQUENCY
-        record.is_na = (fd.FREQUENCY == "N/A")
-
-
-
+          record.count = fd.FREQUENCY
 
   loadSensitiveWhaleData: (data) ->
-
     for sw in data
       sc_id = sw.SC_ID
       scd = @app.sketchClasses.get(sc_id)
