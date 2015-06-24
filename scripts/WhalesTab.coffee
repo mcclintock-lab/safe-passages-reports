@@ -34,32 +34,39 @@ class WhalesTab extends ReportTab
   render: () ->
 
     window.results = @results
-    #isobath = @recordSet('ShippingLaneReport', 'Habitats')
-    
-    console.log("sketch class name: ", @sketchClass.id)
     sensitiveWhales = @recordSet('SensitiveWhaleOverlap', 'SensitiveWhale').toArray()
     @loadSensitiveWhaleData sensitiveWhales
     whaleSightings = @recordSet('WhaleOverlapTool', 'WhaleCount').toArray()
+    hasNAs = false
 
-
-    whales_in_mgmt_areas = _.filter whaleSightings, (row) -> row.SC_ID == MGMT_AREA_ID
-    console.log('wmgt:', whales_in_mgmt_areas)       
-
+    whales_in_mgmt_areas = _.filter whaleSightings, (row) -> row.SC_ID == MGMT_AREA_ID     
     hasManagementAreas = whales_in_mgmt_areas?.length > 0
     mgmt_area_whales = _.map sightingsTemplate, (s) -> _.clone(s)
     @loadSightingsData mgmt_area_whales, whales_in_mgmt_areas
+    for rec in mgmt_area_whales
+      if rec.is_na
+        hasNAs = true
+        break
 
     whales_in_shipping_lanes = _.filter whaleSightings, (row) -> (row.SC_ID == SHIPPING_LANE_ID)
     hasShippingLanes = whales_in_shipping_lanes?.length > 0
     shipping_lane_whales = _.map sightingsTemplate, (s) -> _.clone(s)
     @loadSightingsData shipping_lane_whales, whales_in_shipping_lanes
+    if !hasNAs
+      for rec in shipping_lane_whales
+        if rec.is_na
+          hasNAs = true
+          break
 
     whales_in_other_areas = _.filter whaleSightings, (row) -> (row.SC_ID != SHIPPING_LANE_ID && row.SC_ID != MGMT_AREA_ID)
-
     hasOtherWhales= whales_in_other_areas?.length > 0
     other_whales = _.map sightingsTemplate, (s) -> _.clone(s)
     @loadSightingsData other_whales, whales_in_other_areas
-
+    if !hasNAs
+      for rec in other_whales
+        if rec.is_na
+          hasNAs = true
+          break
 
     context =
       sketchClass: @app.sketchClasses.get(@model.get 'sketchclass').forTemplate()
@@ -74,6 +81,7 @@ class WhalesTab extends ReportTab
       hasOtherWhales: hasOtherWhales
 
       sensitiveWhales: sensitiveWhales
+      hasNAs: hasNAs
 
     @$el.html @template.render context, @partials
     @enableLayerTogglers(@$el)

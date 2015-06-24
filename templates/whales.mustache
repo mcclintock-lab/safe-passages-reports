@@ -25,7 +25,7 @@
 <div class="reportSection sightings {{lengthChangeClass}} collapsed">
   <h4>Channel Islands Naturalist Corp Observations</h4>
   <p>
-    Total number of observations recorded in the footprint of this sketched plan by the Channel Islands Naturalist Corp upon whale watching vessels.  View the effort layer to assess wether this is an appropriate data set to use to compare plans of interest.
+    Total number of observations recorded in the footprint of this sketched plan by the Channel Islands Naturalist Corp upon whale watching vessels.  View the effort layer to assess whether this is an appropriate data set to use to compare plans of interest.
   </p>
     {{#hasManagementAreas}}
     <p><strong>In Management Areas:</strong></p>
@@ -36,7 +36,7 @@
           <span class="area">{{count}} of {{count_tot}} ({{count_perc}}%)</span>
         {{/is_na}}
         {{#is_na}}
-          <span class="na_area">N/A</span>
+          <span class="na_area">N/A<sup>*</sup></span>
         {{/is_na}}
       </li>
       {{/mgmt_area_whales}}
@@ -52,7 +52,7 @@
             <span class="area">{{count}} of {{count_tot}} ({{count_perc}}%)</span>
           {{/is_na}}
           {{#is_na}}
-            <span class="na_area">N/A</span>
+            <span class="na_area">N/A<sup>*</sup></span>
           {{/is_na}}
         </li>
       {{/shipping_lane_whales}}
@@ -67,12 +67,17 @@
           <span class="area">{{count}} of {{count_tot}} ({{count_perc}}%)</span>
         {{/is_na}}
         {{#is_na}}
-          <span class="na_area">N/A</span>
+          <span class="na_area">N/A<sup>*</sup></span>
         {{/is_na}}
       </li>
       {{/otherWhaleSightings}}
     </ul>
     {{/hasOtherWhales}}
   <a href="#" style="float:right;" data-toggle-node="5541a9abcdac4caa025a3ba8">show effort layer</a>
+
+  {{#hasNAs}}
+    <p style="margin-top:30px;"><sup>*</sup><i>Whale sighting counts are only applicable within the Channel Island Naturalist Corp Observation area. If at least 75% of a management area or shipping lane lies outside this region, the count values will be marked as N/A.</i>
+    </p>
+  {{/hasNAs}}
 </div>
 
