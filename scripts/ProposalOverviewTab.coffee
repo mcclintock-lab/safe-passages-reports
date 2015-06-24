@@ -30,13 +30,17 @@ class ProposalOverviewTab extends ReportTab
     isCollection = @model.isCollection()
 
     lengths = @recordSet('ShippingLaneLengthForProposal', 'Lengths').toArray()
+    hasShippingLanes = lengths?.length > 0
     zonesizes = @recordSet('ZoneSize', 'Size').toArray()
+    hasZones = zonesizes?.length > 0
     for l in lengths
       l.NEW_LENGTH = parseFloat(l.NEW_LENGTH).toFixed(1)
 
     context =
       lengths: lengths
+      hasShippingLanes: hasShippingLanes
       zones: zonesizes
+      hasZones: hasZones
 
     @$el.html @template.render context, @partials
 

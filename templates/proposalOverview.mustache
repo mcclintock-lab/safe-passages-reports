@@ -19,7 +19,7 @@
     	</table>
   </div>
 {{/anyAttributes}}
-
+{{#hasZones}}
 <div class="distance reportSection">
   <h4>Zone Sizes</h4>
   {{#zones}}
@@ -28,7 +28,8 @@
   	</p>
   {{/zones}}
 </div>
-
+{{/hasZones}}
+{{#hasShippingLanes}}
 <div class="distance reportSection">
   <h4>Shipping Lane Lengths</h4>
   {{#lengths}}
@@ -37,3 +38,4 @@
   	</p>
   {{/lengths}}
 </div>
+{{/hasShippingLanes}}
