@@ -27,21 +27,42 @@ class ProposalEmissionsTab extends ReportTab
 
   render: () ->
     window.results = @results
+    isCollection = @model.isCollection()
     emissions = @recordSet('EmissionsReduction', 'Emissions').toArray()    
     reductions = @parseReductions emissions
+    
+
     emissionsReductions = []
     for key in Object.keys(reductions)
-      console.log("red: ", reductions[key])
       emissionsReductions.push(reductions[key])
 
     context =
       sketchClass: @app.sketchClasses.get(@model.get 'sketchclass').forTemplate()
       sketch: @model.forTemplate()
       emissionsReductions: emissionsReductions
+      isCollection: isCollection
 
     @$el.html @template.render context, @partials
 
     @enableLayerTogglers(@$el)
+
+  roundValue: (value, addApprox, isPounds) =>
+    if value < 1 and !isPounds
+      return "< 1 ton"
+    else
+      rval = Math.round(value)
+      if isPounds
+        tval = "pound"
+      else
+        tval = "ton"
+
+      if rval != 1
+        tval = tval+"s"
+
+      if addApprox
+        return "approximately "+rval+" "+tval
+      else
+        return rval+" "+tval
 
   parseReductions: (emissions) =>
     reductions = {}
@@ -55,23 +76,19 @@ class ProposalEmissionsTab extends ReportTab
         currRed = reductions[name]
       else
         currRed = {"NAME":name}
-        
 
       if type == "ORIG"
-        console.log("its orig", er.CO2)
-        currRed.ORIG_CO2 = Math.round(er.CO2)
-        currRed.ORIG_NOX = Math.round(er.NOX)
-        currRed.ORIG_SOX = Math.round(er.SOX)
-        currRed.ORIG_PM10 = Math.round(er.PM10)
+        currRed.ORIG_CO2 = @roundValue(er.CO2, false, false)
+        currRed.ORIG_NOX = @roundValue(er.NOX, false, false)
+        currRed.ORIG_SOX = @roundValue(er.SOX, false, false)
+        currRed.ORIG_PM10 = @roundValue(er.PM10*2000, false, true)
       else if type == "NEW"
-        console.log('its new:', er.CO2)
-        currRed.NEW_CO2 = Math.round(er.CO2)
-        currRed.NEW_NOX = Math.round(er.NOX)
-        currRed.NEW_SOX = Math.round(er.SOX)
-        currRed.NEW_PM10 = Math.round(er.PM10)
+        currRed.NEW_CO2 = @roundValue(er.CO2, true, false)
+        currRed.NEW_NOX = @roundValue(er.NOX, true, false)
+        currRed.NEW_SOX = @roundValue(er.SOX, true, false)
+        currRed.NEW_PM10 = @roundValue(er.PM10*2000, true, true)
       else
         currRed.PERC_CO2 = parseFloat(er.CO2)
-        console.log("perc co2: ", er.CO2)
         if currRed.PERC_CO2 > 0
           currRed.CO2_CHANGE_CLASS = neg
           currRed.co2EmissionsIncreased = false
@@ -128,7 +145,6 @@ class ProposalEmissionsTab extends ReportTab
 
           currRed.PERC_PM10 = Math.abs(currRed.PERC_PM10)
           currRed.pmEmissionsIncreased = true
-
 
       reductions[name] = currRed
       

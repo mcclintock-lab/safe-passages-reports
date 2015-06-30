@@ -32,7 +32,7 @@ class EmissionsTab extends ReportTab
     existingLength = 158.35
     length = new_length
 
-
+    '''
     new_co2_emissions = parseFloat(@recordSet('Emissions', 'NewCO2').data.value)
     orig_co2_emissions = parseFloat(@recordSet('Emissions', 'OrigCO2').data.value)
 
@@ -69,7 +69,7 @@ class EmissionsTab extends ReportTab
     if Math.abs(orig_pm_emissions - new_pm_emissions) < 0.01
       pmEmissionsChangeClass = 'nochange'
     significantPMEmissionsChange = Math.abs(orig_pm_emissions - new_pm_emissions) > 0.1
-
+    '''
     context =
       sketchClass: @app.sketchClasses.get(@model.get 'sketchclass').forTemplate()
       sketch: @model.forTemplate()
@@ -105,6 +105,24 @@ class EmissionsTab extends ReportTab
 
     @$el.html @template.render context, @partials
     @enableLayerTogglers(@$el)
+
+  roundValue: (value, addApprox, isPounds) =>
+    if value < 1 and !isPounds
+      return "< 1 ton"
+    else
+      rval = Math.round(value)
+      if isPounds
+        tval = "pound"
+      else
+        tval = "ton"
+
+      if rval != 1
+        tval = tval+"s"
+
+      if addApprox
+        return "approximately "+rval+" "+tval
+      else
+        return rval+" "+tval
 
     # Shouldn't we give some feedback to the user if the layer isn't present in the layer tree?
   _handleReportLayerClick: (e) ->
