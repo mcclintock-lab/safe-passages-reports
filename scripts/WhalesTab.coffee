@@ -29,13 +29,18 @@ class WhalesTab extends ReportTab
   events:
     "click a[rel=toggle-layer]" : '_handleReportLayerClick'
     "click a.moreResults":        'onMoreResultsClick'
-  dependencies: ['SensitiveWhaleOverlap', 'WhaleOverlapTool']
+  dependencies: ['SensitiveWhaleOverlap', 'WhaleOverlapTool', 'RedfernWhaleToolbox']
 
   render: () ->
 
     window.results = @results
     sensitiveWhales = @recordSet('SensitiveWhaleOverlap', 'SensitiveWhale').toArray()
     @loadSensitiveWhaleData sensitiveWhales
+
+    redfern_whales = @recordSet('RedfernWhaleToolbox', 'RefernWhale').toArray()
+
+    @loadRedfernWhaleData redfern_whales
+
     whaleSightings = @recordSet('WhaleOverlapTool', 'WhaleCount').toArray()
     hasNAs = false
 
@@ -83,6 +88,8 @@ class WhalesTab extends ReportTab
       sensitiveWhales: sensitiveWhales
       hasNAs: hasNAs
 
+      redfern_whales: redfern_whales
+
     @$el.html @template.render context, @partials
     @enableLayerTogglers(@$el)
 
@@ -119,6 +126,18 @@ class WhalesTab extends ReportTab
           record.count_tot = fd.count_tot
 
           record.count = fd.FREQUENCY
+
+  loadRedfernWhaleData: (data) ->
+    for sw in data
+      sc_id = sw.SC_ID
+      scd = @app.sketchClasses.get(sc_id)
+      sw.SC_NAME = scd.attributes.name
+      
+      sw.BLUE_SQM = Math.round(sw.BLUE_SQM)+" sq. mi."
+      sw.FIN_SQM = Math.round(sw.FIN_SQM)+" sq. mi."
+      sw.HUMP_SQM = Math.round(sw.HUMP_SQM)+" sq. mi."
+    
+    return data
 
   loadSensitiveWhaleData: (data) ->
     for sw in data

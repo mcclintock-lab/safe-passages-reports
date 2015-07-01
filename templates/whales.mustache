@@ -81,3 +81,26 @@
   {{/hasNAs}}
 </div>
 
+<div class="reportSection sightings">
+  <h4>Whale Density Habitat Models
+    <a href="#" style="float:right;" data-toggle-node="5523fa79b43a3ad42844da60">show whale density layer</a>
+  </h4>
+    <p>
+      This analytic calculates the sq. miles of overlap with areas of top 20% density value according to the Redfern et. al. whale density habitat models.  A greater number of sq. miles can be interpreted as a greater overlap with higher density areas.
+    </p>
+  {{#redfern_whales}}
+  <p><strong>In {{SC_NAME}}s:</strong></p>
+  <ul class="sightings">
+      <li class="Blue">Blue whales <span class="sci">Balaenoptera musculus</span>
+        <span class="area"><strong>{{BLUE_SQM}}</strong></span>
+      </li>
+      <li class="Fin">Fin whales <span class="sci">Balaenoptera physalus</span>
+        <span class="area"><strong>{{FIN_SQM}}</strong></span>
+      </li>
+       <li class="Humpback">Humpback whales <span class="sci">Megaptera novaeangliae</span>
+        <span class="area"><strong>{{HUMP_SQM}}</strong></span>
+      </li>  
+  </ul>
+  {{/redfern_whales}}
+</div>
+
