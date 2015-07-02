@@ -38,7 +38,8 @@ class WhalesTab extends ReportTab
     @loadSensitiveWhaleData sensitiveWhales
 
     redfern_whales = @recordSet('RedfernWhaleToolbox', 'RefernWhale').toArray()
-
+    ladd_whales = @recordSet('RedfernWhaleToolbox', 'LaddWhale').toArray()
+    @loadLaddData ladd_whales
     @loadRedfernWhaleData redfern_whales
 
     whaleSightings = @recordSet('WhaleOverlapTool', 'WhaleCount').toArray()
@@ -89,6 +90,7 @@ class WhalesTab extends ReportTab
       hasNAs: hasNAs
 
       redfern_whales: redfern_whales
+      ladd_whales: ladd_whales
 
     @$el.html @template.render context, @partials
     @enableLayerTogglers(@$el)
@@ -126,6 +128,14 @@ class WhalesTab extends ReportTab
           record.count_tot = fd.count_tot
 
           record.count = fd.FREQUENCY
+
+  loadLaddData: (data) ->
+    for sw in data
+      sc_id = sw.SC_ID
+      scd = @app.sketchClasses.get(sc_id)
+      sw.SC_NAME = scd.attributes.name
+    
+    return data
 
   loadRedfernWhaleData: (data) ->
     for sw in data
