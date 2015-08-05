@@ -88,7 +88,7 @@ class ProposalEmissionsTab extends ReportTab
         currRed.NEW_SOX = @roundValue(er.SOX, true, false)
         currRed.NEW_PM10 = @roundValue(er.PM10*2000, true, true)
       else
-        currRed.PERC_CO2 = parseFloat(er.CO2)
+        currRed.PERC_CO2 = Math.round(parseFloat(er.CO2))
         if currRed.PERC_CO2 > 0
           currRed.CO2_CHANGE_CLASS = neg
           currRed.co2EmissionsIncreased = false
@@ -102,7 +102,7 @@ class ProposalEmissionsTab extends ReportTab
           currRed.PERC_CO2 = Math.abs(currRed.PERC_CO2)
           currRed.co2EmissionsIncreased = true
 
-        currRed.PERC_NOX = parseFloat(er.NOX)
+        currRed.PERC_NOX = Math.round(parseFloat(er.NOX))
         if currRed.PERC_NOX > 0
           currRed.NOX_CHANGE_CLASS = neg
           currRed.noxEmissionsIncreased = false
@@ -117,7 +117,7 @@ class ProposalEmissionsTab extends ReportTab
           currRed.PERC_NOX = Math.abs(currRed.PERC_NOX)
           currRed.noxEmissionsIncreased = true
 
-        currRed.PERC_SOX = parseFloat(er.SOX)
+        currRed.PERC_SOX = Math.round(parseFloat(er.SOX))
         if currRed.PERC_SOX > 0
           currRed.SOX_CHANGE_CLASS = neg
           currRed.soxEmissionsIncreased = false
@@ -131,7 +131,7 @@ class ProposalEmissionsTab extends ReportTab
           currRed.PERC_SOX = Math.abs(currRed.PERC_SOX)
           currRed.soxEmissionsIncreased = true
 
-        currRed.PERC_PM10 = parseFloat(er.PM10)
+        currRed.PERC_PM10 = Math.round(parseFloat(er.PM10))
         if currRed.PERC_PM10 > 0
           currRed.PM10_CHANGE_CLASS = neg
           currRed.pmEmissionsIncreased = false
